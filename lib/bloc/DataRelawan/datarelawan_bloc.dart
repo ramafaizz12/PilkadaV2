@@ -17,6 +17,8 @@ class DatarelawanBloc extends Bloc<DatarelawanEvent, DatarelawanState> {
     List<DataRelawan>? foundUsers = [];
     List<String> listgrup = [];
     List<String> listkabupaten = [];
+    List<DataGruprelawan>? gruprelawan = [];
+    List<DataGruprelawan>? foundgrup = [];
     kedaerahlist() async {
       var datagruprelawan = await auth!.getdatagruprelawan();
       var datakabupaten = await auth.getdatakabupaten();
@@ -48,13 +50,16 @@ class DatarelawanBloc extends Bloc<DatarelawanEvent, DatarelawanState> {
       }
       if (event is DataRelawanNew) {
         var data = await auth!.getdatarelawan();
-        emit(DataRelawanLoaded(data: data));
+        await kedaerahlist();
+        emit(DataRelawanLoaded(
+            data: data, gruprelawan: listgrup, datakabupaten: listkabupaten));
       }
 
       if (event is TambahDataRelawan) {
         var data = await auth!.createrelawan(
             nama: event.nama,
             nik: event.nik,
+            // kordinator_id: event.kordinator_id,
             tempat_lahir: event.tempat_lahir,
             tanggal_lahir: event.tanggal_lahir,
             jkl: event.jkl,
@@ -70,8 +75,9 @@ class DatarelawanBloc extends Bloc<DatarelawanEvent, DatarelawanState> {
       }
 
       if (event is GrupRelawanConnect) {
-        var data = await auth!.getdatagruprelawan();
-        emit(DataGruprelawanLoaded(data: data));
+        gruprelawan = await auth!.getdatagruprelawan();
+        foundgrup = gruprelawan;
+        emit(DataGruprelawanLoaded(data: gruprelawan));
       }
       if (event is DatarelawanSearch) {
         List<DataRelawan> results = [];
@@ -92,6 +98,21 @@ class DatarelawanBloc extends Bloc<DatarelawanEvent, DatarelawanState> {
             data: foundUsers,
             datakabupaten: listkabupaten,
             gruprelawan: listgrup));
+      }
+
+      if (event is DataGrupRelawanSearch) {
+        List<DataGruprelawan> results = [];
+        if (event.value!.isEmpty) {
+          results = gruprelawan!;
+        } else {
+          results = gruprelawan!
+              .where((e) => e.nama_grup!
+                  .toLowerCase()
+                  .contains(event.value!.toLowerCase()))
+              .toList();
+          foundgrup = results;
+          emit(DataGruprelawanLoaded(data: foundgrup));
+        }
       }
     });
   }

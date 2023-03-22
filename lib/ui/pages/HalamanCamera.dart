@@ -54,7 +54,7 @@ class _CameraPageState extends State<CameraPage> {
         body: Stack(
           children: [
             Container(
-                width: p1.maxWidth, height: p1.maxHeight, color: colororange),
+                width: p1.maxWidth, height: p1.maxHeight, color: birumuda),
             Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -76,7 +76,7 @@ class _CameraPageState extends State<CameraPage> {
                           Navigator.pop(context);
                         },
                         child: Icon(
-                          color: colororange,
+                          color: birumuda,
                           Icons.arrow_back,
                         ),
                       ),
@@ -89,7 +89,7 @@ class _CameraPageState extends State<CameraPage> {
                           _kepageutama();
                         },
                         child: Icon(
-                          color: colororange,
+                          color: birumuda,
                           Icons.camera,
                         ),
                       ),
@@ -99,7 +99,7 @@ class _CameraPageState extends State<CameraPage> {
                           controller.setFlashMode(FlashMode.auto);
                         },
                         child: Icon(
-                          color: colororange,
+                          color: birumuda,
                           Icons.light_mode,
                         ),
                       ),

@@ -3,6 +3,7 @@ part 'dataprofile.g.dart';
 
 @JsonSerializable()
 class DataProfile {
+  int? id;
   String? name;
   String? foto;
   String? role;
@@ -10,7 +11,8 @@ class DataProfile {
   String? alamat;
   String? asal;
 
-  DataProfile({this.name, this.foto, this.role, this.nik, this.alamat});
+  DataProfile(
+      {this.name, this.foto, this.role, this.nik, this.alamat, this.id});
 
   factory DataProfile.fromJson(Map<String, dynamic> data) =>
       _$DataProfileFromJson(data);

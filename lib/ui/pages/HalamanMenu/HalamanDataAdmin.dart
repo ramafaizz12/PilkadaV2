@@ -9,6 +9,8 @@ class HalamanDataAdmin extends StatelessWidget {
     'assets/icon5.svg',
     'assets/icon6.svg',
     'assets/icon7.svg',
+    'assets/icon8.svg',
+    'assets/icon1.svg',
     'assets/icon5.svg',
   ];
   List nama = [
@@ -18,9 +20,12 @@ class HalamanDataAdmin extends StatelessWidget {
     'JUMLAH DPT',
     'KOORDINATOR',
     'SAKSI TPS',
-    'PENERIMA AKSESORIS',
-    'CALEG'
+    'AKSESORIS',
+    'CALEG',
+    'HPS',
+    'KORKOMUNITAS',
   ];
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -32,37 +37,71 @@ class HalamanDataAdmin extends StatelessWidget {
               width: p1.maxWidth,
               height: p1.maxHeight,
               child: GridView.builder(
-                itemCount: 8,
+                scrollDirection: Axis.horizontal,
+                itemCount: nama.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4),
+                    crossAxisCount: 1),
                 itemBuilder: (context, index) => ContainerDatabaru(
                   fungsi: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => HalamanTemplateData(
-                                  haldata: (index == 0)
-                                      ? HalamanDataTps()
-                                      : (index == 1)
-                                          ? HalamanDataGruprelawan()
-                                          : (index == 2)
-                                              ? HalamanDatarelawancoba()
-                                              : (index == 3)
-                                                  ? HalamanJumlahdpt()
-                                                  : (index == 4)
-                                                      ? HalamanKoordinator()
-                                                      : (index == 5)
-                                                          ? HalamanDataSaksitps()
-                                                          : (index == 6)
-                                                              ? HalamanAksesoris()
-                                                              : (index == 7)
-                                                                  ? HalamanCaleg()
-                                                                  : const Text(
-                                                                      ""),
-                                )));
+                            builder: (context) => (index == 0)
+                                ? HalamanTemplateawal(
+                                    nama: 'Data Tps',
+                                    halamandata: HalamanDataTps())
+                                : (index == 1)
+                                    ? HalamanTemplateawal(
+                                        nama: 'Data Grup Relawan',
+                                        halamandata: HalamanDataGruprelawan())
+                                    : (index == 2)
+                                        ? HalamanTemplateawal(
+                                            nama: 'Relawan',
+                                            halamandata:
+                                                HalamanDatarelawancoba())
+                                        : (index == 3)
+                                            ? HalamanTemplateawal(
+                                                nama: 'Data Jumlah DPT',
+                                                halamandata: HalamanJumlahdpt())
+                                            : (index == 4)
+                                                ? HalamanTemplateawal(
+                                                    nama: 'Data Koordinator',
+                                                    halamandata:
+                                                        HalamanKoordinator())
+                                                : (index == 5)
+                                                    ? HalamanTemplateawal(
+                                                        nama: 'Data Saksi',
+                                                        halamandata:
+                                                            HalamanDataSaksitps())
+                                                    : (index == 6)
+                                                        ? HalamanTemplateawal(
+                                                            nama:
+                                                                'Penerima Aksesoris',
+                                                            halamandata:
+                                                                HalamanAksesoris())
+                                                        : (index == 7)
+                                                            ? HalamanTemplateawal(
+                                                                nama:
+                                                                    'Data Caleg',
+                                                                halamandata:
+                                                                    HalamanCaleg())
+                                                            : (index == 8)
+                                                                ? HalamanTemplateawal(
+                                                                    nama:
+                                                                        'Hasil Perolehan Suara',
+                                                                    halamandata:
+                                                                        HalamanPerolehanSuara())
+                                                                : (index == 9)
+                                                                    ? HalamanTemplateawal(
+                                                                        nama:
+                                                                            'Komunitas Koordinator',
+                                                                        halamandata:
+                                                                            HalamanKordinatorKomunitas())
+                                                                    : Text(
+                                                                        "")));
                   },
-                  nama: nama[index],
                   gambar: gambar[index],
+                  nama: nama[index],
                   width: p1.maxWidth * 0.25,
                   height: p1.maxHeight * 0.15,
                 ),

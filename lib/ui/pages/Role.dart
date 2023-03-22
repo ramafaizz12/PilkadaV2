@@ -21,21 +21,27 @@ class Role extends StatelessWidget {
           if (state.data!.role == 'calek') {
             context.read<DatadashboardBloc>().add(DatadashboardConnectCalek());
             return HomePage(
-                haldata: HalamanDataa(), dashboard: Dashboardcalek());
+                haldata: HalamanDataCalek(), dashboard: DashBoardcalek());
           }
           if (state.data!.role == 'kordinator') {
             context
                 .read<DatadashboardBloc>()
                 .add(DatadashboardConnectKordinator());
             return HomePage(
-                haldata: HalamanDataa(), dashboard: DashboardKoordinator());
+                haldata: HalamanDataKoordinator(),
+                dashboard: Dashboarkoordinator());
           }
           if (state.data!.role == 'relawan') {
             context
                 .read<DatadashboardBloc>()
                 .add(DatadashboardConnectRelawan());
             return HomePage(
-                haldata: HalamanDataa(), dashboard: DashboardRelawan());
+                haldata: HalamanDataRelawann(), dashboard: DashboardRelawan());
+          }
+          if (state.data!.role == 'cabup') {
+            context.read<DatadashboardBloc>().add(DatadashboardConnectCalek());
+            return HomePage(
+                haldata: HalamanDataCalek(), dashboard: DashBoardcalek());
           }
         }
         return const HalamanLoading();

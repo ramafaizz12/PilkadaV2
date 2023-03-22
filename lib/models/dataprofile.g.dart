@@ -12,10 +12,12 @@ DataProfile _$DataProfileFromJson(Map<String, dynamic> json) => DataProfile(
       role: json['role'] as String?,
       nik: json['nik'] as String?,
       alamat: json['alamat'] as String?,
+      id: json['id'] as int?,
     )..asal = json['asal'] as String?;
 
 Map<String, dynamic> _$DataProfileToJson(DataProfile instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'name': instance.name,
       'foto': instance.foto,
       'role': instance.role,

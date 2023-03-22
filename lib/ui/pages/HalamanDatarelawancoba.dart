@@ -18,92 +18,53 @@ class _HalamanDatarelawancobaState extends State<HalamanDatarelawancoba> {
   int page = 4 + 1;
   @override
   initState() {
+    context.read<DatarelawanBloc>().add(DataRelawanConnect(page: '1'));
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    context.read<DatarelawanBloc>().add(DataRelawanConnect(page: '1'));
     return LayoutBuilder(
       builder: (p0, p1) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Text(
-                "Data Relawan",
-                textAlign: TextAlign.start,
-                style: textpoppin.copyWith(fontWeight: FontWeight.w600),
+              ContainerSearch(
+                width: p1.maxWidth * 0.81,
+                height: p1.maxHeight * 0.07,
+                hinttext: 'Cari Nama Relawan',
+                cari: (value) => context
+                    .read<DatarelawanBloc>()
+                    .add(DatarelawanSearch(value: value)),
               ),
-              Container(
-                width: p1.maxWidth * 0.25,
-                height: p1.maxHeight * 0.05,
-                decoration: BoxDecoration(
-                    color: colorbiru, borderRadius: BorderRadius.circular(12)),
-                child: TextButton(
-                    onPressed: () {
+              BlocBuilder<DataprofileBloc, DataprofileState>(
+                builder: (context, state) {
+                  if (state is DataprofileLoaded) {
+                    if (state.data!.role == 'admin') {
+                      return Text("");
+                    }
+                  }
+                  return ContainerTambah(
+                    width: p1.maxWidth * 0.15,
+                    height: p1.maxHeight * 0.07,
+                    fungsi: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => HalamanTemplateData(
-                                    haldata: HalamanTambahDataRelawan(),
+                              builder: (context) => HalamanTemplateBaru(
+                                    nama: 'Tambah Relawan',
+                                    halamandata: HalamanTambahDataRelawan(),
                                   )));
                     },
-                    child: Text(
-                      "Tambah",
-                      style: textpoppin.copyWith(
-                          fontSize: p1.maxHeight * 0.02,
-                          color: putih,
-                          fontWeight: FontWeight.w600),
-                    )),
+                  );
+                },
               )
             ],
           ),
           SizedBox(
-            height: p1.maxHeight * 0.02,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Container(
-                width: p1.maxWidth * 0.7,
-                height: p1.maxHeight * 0.06,
-                decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: colorbiru),
-                    borderRadius: BorderRadius.circular(15),
-                    color: putih),
-                child: TextField(
-                  onChanged: (value) => context
-                      .read<DatarelawanBloc>()
-                      .add(DatarelawanSearch(value: value)),
-                  style: textpoppin.copyWith(fontSize: p1.maxHeight * 0.02),
-                  decoration: const InputDecoration(
-                      hintText: 'Masukkan Nama Relawan',
-                      border: InputBorder.none,
-                      isDense: true,
-                      contentPadding: EdgeInsets.only(top: 5, left: 5)),
-                ),
-              ),
-              Container(
-                width: p1.maxWidth * 0.25,
-                height: p1.maxHeight * 0.05,
-                decoration: BoxDecoration(
-                    color: colorbiru, borderRadius: BorderRadius.circular(12)),
-                child: TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      "Cari",
-                      style: textpoppin.copyWith(
-                          fontSize: p1.maxHeight * 0.02,
-                          color: putih,
-                          fontWeight: FontWeight.w600),
-                    )),
-              )
-            ],
-          ),
-          SizedBox(
-            height: p1.maxHeight * 0.02,
+            height: p1.maxHeight * 0.04,
           ),
           SizedBox(
               width: p1.maxWidth,
@@ -117,97 +78,123 @@ class _HalamanDatarelawancobaState extends State<HalamanDatarelawancoba> {
                               itemCount: state.data!.length,
                               gridDelegate:
                                   SliverGridDelegateWithFixedCrossAxisCount(
-                                      childAspectRatio: (1 / .4),
+                                      childAspectRatio: (1 / .22),
                                       crossAxisCount: 1,
                                       mainAxisSpacing: p1.maxHeight * 0.02,
                                       crossAxisSpacing: 5),
-                              itemBuilder: (context, index) => InkWell(
-                                    onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  HalamanTemplateData(
-                                                    haldata: HalamanDetailRelawan(
-                                                        gambar: state
-                                                            .data![index].foto,
-                                                        relawan: state
-                                                            .data![index].nama
-                                                            .toString(),
-                                                        noktp: state.data![index].nik
-                                                            .toString(),
-                                                        notelepon: state
-                                                            .data![index].no_hp
-                                                            .toString(),
-                                                        tempatlahir: state
-                                                            .data![index]
-                                                            .tempat_lahir
-                                                            .toString(),
-                                                        tanggallahir: state
-                                                            .data![index]
-                                                            .tanggal_lahir
-                                                            .toString(),
-                                                        agama: state
-                                                            .data![index].agama
-                                                            .toString(),
-                                                        jeniskelamin:
-                                                            state.data![index].jkl.toString(),
-                                                        gruprelawan: state.gruprelawan![index].toString(),
-                                                        kabupaten: state.datakabupaten![index].toString()),
-                                                  )));
-                                    },
-                                    child: Container(
-                                      width: p1.maxWidth,
-                                      height: p1.maxHeight * 0.2,
-                                      decoration: BoxDecoration(
-                                          color: abuabu,
-                                          borderRadius:
-                                              BorderRadius.circular(12)),
-                                      child: Padding(
-                                        padding: EdgeInsets.only(
-                                            top: p1.maxHeight * 0.02),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          children: [
-                                            CircleAvatar(
-                                              radius: 48,
-                                              backgroundImage: NetworkImage(
-                                                  'https://web-sisfopilkada.taekwondosulsel.info/public/storage/${state.data![index].foto}'),
-                                            ),
-                                            Text(
-                                              'Nama Relawan\nGrup Relawan',
-                                              textAlign: TextAlign.center,
-                                              style: textpoppin.copyWith(
-                                                  fontSize:
-                                                      p1.maxHeight * 0.02),
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                            Flexible(
-                                              flex: 1,
-                                              child: Text(
-                                                '${state.data![index].nama}\n${state.gruprelawan![index]}',
-                                                textAlign: TextAlign.start,
-                                                overflow: TextOverflow.ellipsis,
-                                                style: textpoppin.copyWith(
-                                                    fontSize:
-                                                        p1.maxHeight * 0.02,
-                                                    fontWeight:
-                                                        FontWeight.w600),
+                              itemBuilder: (context, index) => Animate(
+                                    effects: [
+                                      FadeEffect(
+                                          duration: Duration(seconds: 1)),
+                                      ScaleEffect(
+                                          duration: Duration(seconds: 1))
+                                    ],
+                                    child: InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    HalamanTemplateBaru(
+                                                      nama: 'Detail Relawan',
+                                                      halamandata: HalamanDetailRelawan(
+                                                          relawan:
+                                                              '${state.data![index].nama}',
+                                                          noktp:
+                                                              '${state.data![index].nik}',
+                                                          notelepon:
+                                                              '${state.data![index].no_hp}',
+                                                          tempatlahir:
+                                                              '${state.data![index].tempat_lahir}',
+                                                          tanggallahir:
+                                                              '${state.data![index].tanggal_lahir}',
+                                                          agama:
+                                                              '${state.data![index].agama}',
+                                                          gambar:
+                                                              '${state.data![index].foto}',
+                                                          jeniskelamin:
+                                                              '${state.data![index].jkl}',
+                                                          gruprelawan:
+                                                              '${state.gruprelawan![index]}',
+                                                          kabupaten:
+                                                              '${state.datakabupaten![index]}'),
+                                                    )));
+                                      },
+                                      child: Container(
+                                        width: p1.maxWidth,
+                                        height: p1.maxHeight * 0.2,
+                                        decoration: BoxDecoration(
+                                            boxShadow: [
+                                              BoxShadow(
+                                                  color: Colors.black
+                                                      .withOpacity(0.5),
+                                                  spreadRadius: 0.5,
+                                                  blurRadius: 5,
+                                                  offset: const Offset(2, 4))
+                                            ],
+                                            color: abuabu,
+                                            borderRadius:
+                                                BorderRadius.circular(25)),
+                                        child: LayoutBuilder(
+                                          builder: (p0, p2) => Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              CircleAvatar(
+                                                radius: 30,
+                                                backgroundImage: NetworkImage(
+                                                    'https://web-sisfopilkada.taekwondosulsel.info/public/storage/${state.data![index].foto}'),
                                               ),
-                                            )
-                                          ],
+                                              Column(
+                                                children: [
+                                                  Text(
+                                                      "${state.data![index].nama}",
+                                                      style:
+                                                          textpoppin.copyWith(
+                                                              color: hitam,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              fontSize:
+                                                                  p2.maxHeight *
+                                                                      0.2)),
+                                                  Row(children: [
+                                                    Container(
+                                                        width:
+                                                            p2.maxWidth * 0.1,
+                                                        height:
+                                                            p2.maxHeight * 0.1,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                                shape: BoxShape
+                                                                    .circle,
+                                                                color:
+                                                                    pinkabu)),
+                                                    Text(
+                                                        "${state.gruprelawan![index]}",
+                                                        style:
+                                                            textpoppin.copyWith(
+                                                                color: hitam,
+                                                                fontSize:
+                                                                    p2.maxHeight *
+                                                                        0.15))
+                                                  ]),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ))
                           : Center(
-                              child: Text("Data Tidak Ditemukan",
-                                  style: textpoppin.copyWith(
-                                      fontSize: p1.maxHeight * 0.02)),
-                            )
+                              child: Text(
+                              "Data Tidak Ditemukan",
+                              style: textpoppin.copyWith(
+                                  fontSize: p1.maxWidth * 0.04),
+                            ))
                       : SpinKitDualRing(
-                          color: colororange,
+                          color: birumuda,
                         );
                 },
               )),
@@ -218,7 +205,7 @@ class _HalamanDatarelawancobaState extends State<HalamanDatarelawancoba> {
               height: p1.maxHeight * 0.06,
               decoration: BoxDecoration(boxShadow: [
                 BoxShadow(color: hitam.withOpacity(0.2), offset: Offset(3, 3))
-              ], color: colorbiru, borderRadius: BorderRadius.circular(15)),
+              ], color: birumuda, borderRadius: BorderRadius.circular(15)),
               child: Row(
                 children: [
                   Flexible(

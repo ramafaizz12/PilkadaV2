@@ -3,12 +3,17 @@ part of '../pages.dart';
 class HalamanDataSaksi extends StatelessWidget {
   List gambar = [
     'assets/icon1.svg',
+    'assets/icon1.svg',
+    'assets/icon4.svg',
     'assets/icon6.svg',
   ];
   List nama = [
     'TPS',
+    'DPS',
+    'JUMLAH DPT',
     'SAKSI TPS',
   ];
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -20,24 +25,36 @@ class HalamanDataSaksi extends StatelessWidget {
               width: p1.maxWidth,
               height: p1.maxHeight,
               child: GridView.builder(
-                itemCount: 2,
+                scrollDirection: Axis.horizontal,
+                itemCount: nama.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4),
+                    crossAxisCount: 1),
                 itemBuilder: (context, index) => ContainerDatabaru(
                   fungsi: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => HalamanTemplateData(
-                                  haldata: (index == 0)
-                                      ? HalamanDataTps()
-                                      : (index == 1)
-                                          ? HalamanDataSaksitps()
-                                          : const Text(""),
-                                )));
+                            builder: (context) => (index == 0)
+                                ? HalamanTemplateawal(
+                                    nama: 'Data Tps',
+                                    halamandata: HalamanDataTps())
+                                : (index == 1)
+                                    ? HalamanTemplateawal(
+                                        nama: 'Data Perolehan Suara',
+                                        halamandata: DataPerolehanSuara())
+                                    : (index == 2)
+                                        ? HalamanTemplateawal(
+                                            nama: 'Data Jumlah DPT',
+                                            halamandata: HalamanJumlahdpt())
+                                        : (index == 3)
+                                            ? HalamanTemplateawal(
+                                                nama: 'Data Saksi',
+                                                halamandata:
+                                                    HalamanDataSaksitps())
+                                            : Text("")));
                   },
-                  nama: nama[index],
                   gambar: gambar[index],
+                  nama: nama[index],
                   width: p1.maxWidth * 0.25,
                   height: p1.maxHeight * 0.15,
                 ),

@@ -1,69 +1,97 @@
 part of '../pages.dart';
 
-class Dashboardcalek extends StatelessWidget {
-  const Dashboardcalek({super.key});
+class DashBoardcalek extends StatelessWidget {
+  const DashBoardcalek({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<DatadashboardBloc, DatadashboardState>(
+    return
+        // kasih kondisi sini
+        BlocBuilder<DatadashboardBloc, DatadashboardState>(
       builder: (context, state) {
         return state is DataDashboardLoaded
-            // kasih kondisi sini
             ? LayoutBuilder(
                 builder: (p0, p1) => Column(
-                  children: [
-                    Container(
-                      width: p1.maxWidth,
-                      height: p1.maxHeight * 0.2,
-                      decoration: BoxDecoration(
-                          color: colororange,
-                          borderRadius: BorderRadius.circular(15)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text(
-                            "Jumlah TPS",
-                            style: textpoppin.copyWith(
-                                fontSize: p1.maxHeight * 0.05,
-                                color: putih,
-                                fontWeight: FontWeight.w600),
-                          ),
-                          Text(
-                            state.data!.tps.toString(),
-                            style: textpoppin.copyWith(
-                                fontSize: p1.maxHeight * 0.05,
-                                color: putih,
-                                fontWeight: FontWeight.w600),
-                          )
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: p1.maxHeight * 0.05,
-                    ),
-
-                    // kasih kondisi sini juga
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        ContainerTps(
-                          width: p1.maxWidth * 0.42,
-                          height: p1.maxHeight * 0.3,
-                          nama: 'Jumlah Koordinator',
-                          angka: state.data!.kordinator.toString(),
+                        Text("JUMLAH TPS",
+                            style: textpoppin.copyWith(
+                                fontWeight: FontWeight.w600,
+                                fontSize: p1.maxHeight * 0.05)),
+                        Container(
+                            width: p1.maxWidth,
+                            height: p1.maxHeight * 0.45,
+                            decoration: BoxDecoration(
+                              color: putih,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Text("${state.data!.tps}",
+                                      style: textpoppin.copyWith(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: p1.maxHeight * 0.07)),
+                                  SvgPicture.asset('assets/asses.svg')
+                                ])),
+                        SizedBox(
+                          height: p1.maxHeight * 0.05,
                         ),
-                        ContainerTps(
-                          width: p1.maxWidth * 0.42,
-                          height: p1.maxHeight * 0.3,
-                          nama: 'Jumlah Relawan',
-                          angka: state.data!.relawan.toString(),
-                        )
+                        Text("JUMLAH DATA",
+                            style: textpoppin.copyWith(
+                                fontWeight: FontWeight.w600,
+                                fontSize: p1.maxHeight * 0.05)),
+                        Container(
+                            width: p1.maxWidth,
+                            height: p1.maxHeight * 0.3,
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black.withOpacity(0.5),
+                                    spreadRadius: 0.5,
+                                    blurRadius: 5,
+                                    offset: const Offset(2, 4))
+                              ],
+                              color: putih,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text("${state.data!.kordinator}",
+                                            style: textpoppin.copyWith(
+                                                fontWeight: FontWeight.w600,
+                                                fontSize:
+                                                    p1.maxHeight * 0.042)),
+                                        Text("KOORDINATOR",
+                                            style: textpoppin.copyWith(
+                                                fontSize:
+                                                    p1.maxHeight * 0.042)),
+                                      ]),
+                                  Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text("${state.data!.relawan}",
+                                            style: textpoppin.copyWith(
+                                                fontWeight: FontWeight.w600,
+                                                fontSize:
+                                                    p1.maxHeight * 0.042)),
+                                        Text("Relawan",
+                                            style: textpoppin.copyWith(
+                                                fontSize:
+                                                    p1.maxHeight * 0.042)),
+                                      ]),
+                                ])),
                       ],
-                    )
-                  ],
-                ),
-              )
-            : const Text("Data Cannot Load");
+                    ))
+            : Text("");
       },
     );
   }

@@ -1,8 +1,6 @@
 part of 'pages.dart';
 
 class LoginPage extends StatefulWidget {
-  static const String routename = '/loginpage';
-
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
@@ -25,20 +23,10 @@ class _LoginPageState extends State<LoginPage> {
     return LayoutBuilder(
       builder: (p0, p1) => Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: putihh,
+        backgroundColor: pinkabu,
         body: Stack(children: [
-          SvgPicture.asset(
-            'assets/bg_atas.svg',
-            width: p1.maxWidth,
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: SvgPicture.asset(
-              'assets/bg_bwh.svg',
-              color: hitam,
-              width: p1.maxWidth,
-            ),
-          ),
+          Image.asset('assets/backgroundlogin.png',
+              width: p1.maxWidth, fit: BoxFit.fitWidth),
           Padding(
             padding: EdgeInsets.only(
                 top: p1.maxHeight * 0.15,
@@ -46,112 +34,87 @@ class _LoginPageState extends State<LoginPage> {
                 right: p1.maxWidth * 0.032),
             child: Column(
               children: [
-                Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        width: p1.maxWidth * 0.2,
-                        height: p1.maxHeight * 0.2,
-                        child: Image.asset('assets/pilkada1.png',
-                            fit: BoxFit.fitWidth),
-                      ),
-                      SizedBox(
-                        height: p1.maxHeight * 0.02,
-                      ),
-                      Text(
-                        "SISTEM INFORMASI",
-                        style: textpoppin.copyWith(
-                            fontWeight: FontWeight.w400,
-                            color: colorbiru,
-                            fontSize: p1.maxHeight * 0.02),
-                      ),
-                      Text(
-                        "PILKADA",
-                        style: textpoppin.copyWith(
-                            fontWeight: FontWeight.w900,
-                            color: colorbiru,
-                            fontSize: p1.maxHeight * 0.03),
-                      )
-                    ],
-                  ),
-                ),
                 SizedBox(
                   height: p1.maxHeight * 0.01,
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Login",
-                      style: textpoppin.copyWith(
-                          fontWeight: FontWeight.w900,
-                          color: colorbiru,
-                          fontSize: p1.maxHeight * 0.03),
-                    ),
-                    Text(
-                      "Silahkan Masukkan Email Dan Password\nAnda Dengan Benar",
-                      style:
-                          textpoppin.copyWith(fontSize: p1.maxHeight * 0.018),
-                    ),
-                    SizedBox(
-                      height: p1.maxHeight * 0.02,
-                    ),
                     Padding(
                       padding: EdgeInsets.only(
                           left: p1.maxHeight * 0.02,
                           right: p1.maxHeight * 0.02),
-                      child: Column(children: [
-                        Column(
+                      child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Email",
+                              "MASUK",
                               style: textpoppin.copyWith(
+                                  fontWeight: FontWeight.w400,
+                                  color: hitam,
                                   fontSize: p1.maxHeight * 0.02),
                             ),
-                            Container(
-                                decoration: BoxDecoration(
-                                    color: putih,
-                                    borderRadius: BorderRadius.circular(12)),
-                                child: TextField(
-                                  onChanged: (text) {
-                                    isemailvalid =
-                                        EmailValidator.validate(text);
-                                  },
-                                  decoration: const InputDecoration(
-                                      border: InputBorder.none),
-                                  controller: username,
-                                  style: textpoppin,
-                                ))
-                          ],
-                        ),
-                        SizedBox(
-                          height: p1.maxHeight * 0.02,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
                             Text(
-                              "Password",
+                              "APLIKASI PILKADA",
                               style: textpoppin.copyWith(
-                                  fontSize: p1.maxHeight * 0.02),
+                                  fontWeight: FontWeight.w900,
+                                  color: pink,
+                                  fontSize: p1.maxHeight * 0.03),
                             ),
-                            Container(
-                              decoration: BoxDecoration(
-                                  color: putih,
-                                  borderRadius: BorderRadius.circular(12)),
-                              child: TextField(
-                                obscureText: true,
-                                decoration: const InputDecoration(
-                                    border: InputBorder.none),
-                                controller: password,
-                                style: textpoppin,
-                              ),
-                            )
-                          ],
-                        ),
-                      ]),
+                            SizedBox(
+                              height: p1.maxHeight * 0.05,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Email",
+                                  style: textpoppin.copyWith(
+                                      fontSize: p1.maxHeight * 0.02),
+                                ),
+                                Container(
+                                    decoration: BoxDecoration(
+                                        color: putih,
+                                        borderRadius:
+                                            BorderRadius.circular(12)),
+                                    child: TextField(
+                                      onChanged: (text) {
+                                        isemailvalid =
+                                            EmailValidator.validate(text);
+                                      },
+                                      decoration: const InputDecoration(
+                                          border: InputBorder.none),
+                                      controller: username,
+                                      style: textpoppin,
+                                    ))
+                              ],
+                            ),
+                            SizedBox(
+                              height: p1.maxHeight * 0.02,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Password",
+                                  style: textpoppin.copyWith(
+                                      fontSize: p1.maxHeight * 0.02),
+                                ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                      color: putih,
+                                      borderRadius: BorderRadius.circular(12)),
+                                  child: TextField(
+                                    obscureText: true,
+                                    decoration: const InputDecoration(
+                                        border: InputBorder.none),
+                                    controller: password,
+                                    style: textpoppin,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ]),
                     ),
                   ],
                 ),
@@ -162,33 +125,17 @@ class _LoginPageState extends State<LoginPage> {
                   builder: (context, state) {
                     return state is LoginLoaded
                         ? const SpinKitFadingFour(
-                            color: colororange,
+                            color: birumuda,
                             size: 50,
                           )
-                        : Container(
-                            width: p1.maxWidth * 0.4,
-                            height: p1.maxHeight * 0.06,
-                            decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                      color: hitam.withOpacity(0.2),
-                                      offset: const Offset(3, 3))
-                                ],
-                                color: colorbiru,
-                                borderRadius: BorderRadius.circular(2)),
-                            child: TextButton(
-                              onPressed: () {
-                                _onLoginbuttonpressed();
-                                setState(() {});
-                                // AutoRouter.of(context).replace(HomeRoute());
-                              },
-                              child: Text("Login",
-                                  textAlign: TextAlign.center,
-                                  style: textpoppin.copyWith(
-                                      color: putih,
-                                      fontSize: p1.maxHeight * 0.016)),
-                            ),
-                          );
+                        : ButtonUtama(
+                            voidcallback: () {
+                              _onLoginbuttonpressed();
+                              setState(() {});
+                            },
+                            namabutton: 'MASUK',
+                            width: p1.maxWidth * 0.5,
+                            height: p1.maxHeight * 0.05);
                   },
                 ),
                 BlocBuilder<LoginBloc, LoginState>(
@@ -197,8 +144,7 @@ class _LoginPageState extends State<LoginPage> {
                         ? Text(
                             "Password atau Username Salah",
                             style: textpoppin.copyWith(
-                                fontSize: p1.maxHeight * 0.02,
-                                color: colororange),
+                                fontSize: p1.maxHeight * 0.02, color: hitam),
                           )
                         : const SizedBox();
                   },

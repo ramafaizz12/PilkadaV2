@@ -20,6 +20,8 @@ import 'package:pilkada/models/saksitps.dart';
 import '../models/Datadpt.dart';
 import '../models/Provinsi.dart';
 import '../models/dataaksesoris.dart';
+import '../models/datakordinatorkomunitas.dart';
+import '../models/dataperolehansuara.dart';
 
 class Authentication {
   final FlutterSecureStorage storage = const FlutterSecureStorage();
@@ -335,6 +337,7 @@ class Authentication {
       String? jkl,
       String? agama,
       String? no_hp,
+      // int? kordinator_id,
       File? scan_ktp,
       File? foto,
       String? Province_id,
@@ -355,6 +358,7 @@ class Authentication {
       'tempat_lahir': tempat_lahir,
       'tanggal_lahir': tanggal_lahir,
       'jkl': jkl,
+      // 'kordinator_id': kordinator_id,
       'scan_ktp': scan_ktp,
       'agama': agama,
       'no_hp': no_hp,
@@ -632,11 +636,90 @@ class Authentication {
     return itemkecamatan;
   }
 
-  // Future<List<String>> getprovinsilisttps({String provinsi = '11'}) async {
-  //   List<String> itemprovinsitpslist;
-  //   List<Datatps>? datatps = [];
-  //   datatps = await getdatatps();
-  //   var dataprovinsi = await getdataprovinsi();
-  //   var item = datatps!.map((e) => e.Province_id.toString()).toList();
-  // }
+  Future<List<DataPerolehanSuara>?> getdataperolehansuara() async {
+    var token = await gettoken();
+    var user = await http.get(
+        Uri.parse(
+            'https://web-sisfopilkada.taekwondosulsel.info/api/index/realcoun'),
+        headers: {'Authorization': token.toString()});
+    Iterable data =
+        (jsonDecode(user.body) as Map<String, dynamic>)['data']['data'];
+
+    List<DataPerolehanSuara> alluser =
+        data.map((e) => DataPerolehanSuara.fromJson(e)).toList();
+
+    return alluser;
+  }
+
+  Future<List<DataKordinatorKomunitas>?> getdatakordinatorkomunitas() async {
+    var token = await gettoken();
+    var user = await http.get(
+        Uri.parse(
+            'https://web-sisfopilkada.taekwondosulsel.info/api/index/komunitas'),
+        headers: {'Authorization': token.toString()});
+    Iterable data = (jsonDecode(user.body) as Map<String, dynamic>)['data'];
+
+    List<DataKordinatorKomunitas> alluser =
+        data.map((e) => DataKordinatorKomunitas.fromJson(e)).toList();
+
+    return alluser;
+  }
+
+  Future<bool?> createperolehansuara({
+    String? jml_suara_sah,
+    String? jml_suara_tidaksah,
+    String? suara_kandidat,
+    String? ket,
+    String? Province_id,
+    String? regency_id,
+    String? district_id,
+    String? tps_id,
+    File? formulir_c1,
+    String? saksi_id,
+    String? data_kecurangan,
+  }) async {
+    var token = await gettoken();
+    var dio = Dio();
+    dio.options.headers = {
+      'Authorization': token,
+      'Accept': 'application/json',
+    };
+    dio.options.baseUrl =
+        'https://web-sisfopilkada.taekwondosulsel.info/api/store/realcoun';
+
+    var formdata = FormData.fromMap({
+      'jml_suara_sah': jml_suara_sah,
+      'jml_suara_tidaksah': jml_suara_tidaksah,
+      'suara_kandidat': suara_kandidat,
+      'ket': ket,
+      'Province_id': Province_id,
+      'regency_id': regency_id,
+      'district_id': district_id,
+      'tps_id': tps_id,
+      'saksi_id': saksi_id,
+      'data_kecurangan': data_kecurangan,
+      'formulir_c1': formulir_c1
+    });
+    var filefoto = await MultipartFile.fromFile(formulir_c1!.path.toString(),
+        filename: (formulir_c1.path),
+        contentType: MediaType('image', (formulir_c1.path.toString())));
+
+    formdata.files.add(MapEntry('formulir_c1', filefoto));
+
+    var response = await dio.post(
+      dio.options.baseUrl,
+      data: formdata,
+    );
+
+    dio.options.validateStatus = (status) {
+      print(status);
+      return true;
+    };
+
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

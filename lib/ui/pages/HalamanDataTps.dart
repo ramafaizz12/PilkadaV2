@@ -125,164 +125,153 @@ class _HalamanDataTpsState extends State<HalamanDataTps> {
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10)))),
             ),
+            SizedBox(height: p1.maxHeight * 0.04),
             SizedBox(
-              width: p1.maxWidth,
-              height: p1.maxHeight * 0.55,
-              child: BlocBuilder<DatatpsBloc, DatatpsState>(
-                builder: (context, state) {
-                  return state is DatatpsLoaded
-                      ? state.data!.isNotEmpty
-                          ? GridView.builder(
-                              scrollDirection: Axis.vertical,
-                              itemCount: state.data!.length,
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                      childAspectRatio: (1 / .5),
-                                      crossAxisCount: 1,
-                                      mainAxisSpacing: p1.maxHeight * 0.02,
-                                      crossAxisSpacing: 5),
-                              itemBuilder: (context, index) => Container(
-                                width: p1.maxWidth,
-                                height: p1.maxHeight * 0.2,
-                                decoration: BoxDecoration(
-                                    color: abuabu,
-                                    borderRadius: BorderRadius.circular(12)),
-                                child: Padding(
-                                  padding:
-                                      EdgeInsets.only(top: p1.maxHeight * 0.02),
-                                  child: SingleChildScrollView(
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              'TPS',
-                                              textAlign: TextAlign.center,
-                                              overflow: TextOverflow.fade,
-                                              style: textpoppin.copyWith(
-                                                  fontSize:
-                                                      p1.maxHeight * 0.02),
-                                            ),
-                                            Text(
-                                              'Provinsi',
-                                              textAlign: TextAlign.center,
-                                              overflow: TextOverflow.fade,
-                                              style: textpoppin.copyWith(
-                                                  fontSize:
-                                                      p1.maxHeight * 0.02),
-                                            ),
-                                            Text(
-                                              'Kabupaten/Kota',
-                                              textAlign: TextAlign.center,
-                                              overflow: TextOverflow.fade,
-                                              style: textpoppin.copyWith(
-                                                  fontSize:
-                                                      p1.maxHeight * 0.02),
-                                            ),
-                                            Text(
-                                              'Kecamatan',
-                                              textAlign: TextAlign.center,
-                                              overflow: TextOverflow.fade,
-                                              style: textpoppin.copyWith(
-                                                  fontSize:
-                                                      p1.maxHeight * 0.02),
-                                            ),
-                                            Text(
-                                              'Keterangan',
-                                              textAlign: TextAlign.center,
-                                              overflow: TextOverflow.fade,
-                                              style: textpoppin.copyWith(
-                                                  fontSize:
-                                                      p1.maxHeight * 0.02),
-                                            ),
-                                          ],
-                                        ),
-                                        Flexible(
-                                          flex: 1,
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                state.data![index].tps
-                                                    .toString(),
-                                                textAlign: TextAlign.start,
-                                                overflow: TextOverflow.fade,
-                                                style: textpoppin.copyWith(
-                                                    fontSize:
-                                                        p1.maxHeight * 0.02,
-                                                    fontWeight:
-                                                        FontWeight.w600),
-                                              ),
-                                              Text(
-                                                '${state.provinsi![index]}',
-                                                textAlign: TextAlign.center,
-                                                overflow: TextOverflow.fade,
-                                                style: textpoppin.copyWith(
-                                                    fontSize:
-                                                        p1.maxHeight * 0.02,
-                                                    fontWeight:
-                                                        FontWeight.w600),
-                                              ),
-                                              Text(
-                                                "${state.kabupaten![index]}",
-                                                textAlign: TextAlign.center,
-                                                overflow: TextOverflow.fade,
-                                                style: textpoppin.copyWith(
-                                                    fontSize:
-                                                        p1.maxHeight * 0.02,
-                                                    fontWeight:
-                                                        FontWeight.w600),
-                                              ),
-                                              Text(
-                                                '${state.kecamatan![index]}',
-                                                textAlign: TextAlign.center,
-                                                overflow: TextOverflow.fade,
-                                                style: textpoppin.copyWith(
-                                                    fontSize:
-                                                        p1.maxHeight * 0.02,
-                                                    fontWeight:
-                                                        FontWeight.w600),
-                                              ),
-                                              Text(
-                                                state.data![index].ket
-                                                    .toString()
-                                                    .replaceAll(
-                                                        RegExp("<p>|</p>|<br>"),
-                                                        ""),
-                                                textAlign: TextAlign.center,
-                                                style: textpoppin.copyWith(
-                                                    fontSize:
-                                                        p1.maxHeight * 0.02,
-                                                    fontWeight:
-                                                        FontWeight.w600),
-                                              ),
-                                            ],
-                                          ),
-                                        )
-                                      ],
+                width: p1.maxWidth,
+                height: p1.maxHeight * 0.55,
+                child: BlocBuilder<DatatpsBloc, DatatpsState>(
+                  builder: (context, state) {
+                    return state is DatatpsLoaded
+                        ? state.data!.isNotEmpty
+                            ? GridView.builder(
+                                scrollDirection: Axis.vertical,
+                                itemCount: state.data!.length,
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                        childAspectRatio: (1 / .5),
+                                        crossAxisCount: 1,
+                                        mainAxisSpacing: p1.maxHeight * 0.02,
+                                        crossAxisSpacing: 5),
+                                itemBuilder: (context, index) => Animate(
+                                  effects: [
+                                    FadeEffect(duration: Duration(seconds: 2)),
+                                    ScaleEffect(duration: Duration(seconds: 1))
+                                  ],
+                                  child: Container(
+                                    width: p1.maxWidth,
+                                    height: p1.maxHeight * 0.2,
+                                    decoration: BoxDecoration(
+                                        color: abuabu,
+                                        borderRadius: BorderRadius.circular(17),
+                                        boxShadow: [
+                                          BoxShadow(
+                                              color:
+                                                  Colors.black.withOpacity(0.5),
+                                              spreadRadius: 0.5,
+                                              blurRadius: 5,
+                                              offset: const Offset(2, 4))
+                                        ]),
+                                    child: LayoutBuilder(
+                                      builder: (p0, p2) => Row(
+                                        children: [
+                                          Container(
+                                              width: p2.maxWidth * 0.4,
+                                              height: p2.maxHeight,
+                                              child: Image.network(
+                                                  'https://web-sisfopilkada.taekwondosulsel.info/public/storage/${state.data![index].image}',
+                                                  fit: BoxFit.fill)),
+                                          SizedBox(width: p2.maxWidth * 0.05),
+                                          Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                    '${state.data![index].tps}',
+                                                    style: textpoppin.copyWith(
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontSize: p2.maxHeight *
+                                                            0.12)),
+                                                Row(children: [
+                                                  Container(
+                                                      width: p2.maxWidth * 0.05,
+                                                      height:
+                                                          p2.maxHeight * 0.05,
+                                                      decoration: BoxDecoration(
+                                                          shape:
+                                                              BoxShape.circle,
+                                                          color: pinkabu)),
+                                                  Text(
+                                                      "${state.provinsi![index]}",
+                                                      style:
+                                                          textpoppin.copyWith(
+                                                              color: hitam,
+                                                              fontSize:
+                                                                  p2.maxHeight *
+                                                                      0.05))
+                                                ]),
+                                                Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceEvenly,
+                                                    children: [
+                                                      Text(
+                                                          "${state.kabupaten![index]}",
+                                                          style: textpoppin.copyWith(
+                                                              color: hitam,
+                                                              fontSize:
+                                                                  p2.maxHeight *
+                                                                      0.05)),
+                                                      SizedBox(
+                                                          width: p2.maxWidth *
+                                                              0.05),
+                                                      Text(
+                                                          "${state.kecamatan![index]}",
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                          style: textpoppin
+                                                              .copyWith(
+                                                                  color: hitam,
+                                                                  fontSize:
+                                                                      p2.maxHeight *
+                                                                          0.05))
+                                                    ]),
+                                                Text(
+                                                    "${state.data![index].alamat}",
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    style: textpoppin.copyWith(
+                                                        color: hitam,
+                                                        fontSize: p2.maxHeight *
+                                                            0.05)),
+                                                Flexible(
+                                                  flex: 1,
+                                                  child: Text(
+                                                      maxLines: 3,
+                                                      "${state.data![index].ket}"
+                                                          .replaceAll(
+                                                              RegExp(
+                                                                  "<p>|</p>|<br>"),
+                                                              ""),
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      style:
+                                                          textpoppin.copyWith(
+                                                              color: hitam,
+                                                              fontSize:
+                                                                  p2.maxHeight *
+                                                                      0.05)),
+                                                )
+                                              ]),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            )
-                          : Center(
-                              child: Text(
+                              )
+                            : Center(
+                                child: Text(
                                 "Data Tidak Ditemukan",
                                 style: textpoppin.copyWith(
                                     fontSize: p1.maxWidth * 0.04),
-                              ),
-                            )
-                      : SpinKitDualRing(
-                          color: colororange,
-                        );
-                },
-              ),
-            ),
+                              ))
+                        : SpinKitDualRing(
+                            color: birumuda,
+                          );
+                  },
+                )),
             Center(
               child: Container(
                 margin: EdgeInsets.only(top: p1.maxHeight * 0.02),
@@ -290,7 +279,7 @@ class _HalamanDataTpsState extends State<HalamanDataTps> {
                 height: p1.maxHeight * 0.06,
                 decoration: BoxDecoration(boxShadow: [
                   BoxShadow(color: hitam.withOpacity(0.2), offset: Offset(3, 3))
-                ], color: colorbiru, borderRadius: BorderRadius.circular(15)),
+                ], color: birumuda, borderRadius: BorderRadius.circular(15)),
                 child: Row(
                   children: [
                     Flexible(

@@ -12,9 +12,12 @@ part 'datakandidat_state.dart';
 class DatakandidatBloc extends Bloc<DatakandidatEvent, DatakandidatState> {
   DatakandidatBloc({Authentication? auth}) : super(DatakandidatInitial()) {
     auth = Authentication();
+    List<DataKandidat>? data = [];
+    List<DataKandidat>? foundkandidat = [];
     on<DatakandidatEvent>((event, emit) async {
       if (event is DataKandidatConnect) {
-        var data = await auth!.getdatakandidat();
+        data = await auth!.getdatakandidat();
+        foundkandidat = data;
         emit(DataKandidatLoaded(data: data));
       }
 
@@ -32,6 +35,23 @@ class DatakandidatBloc extends Bloc<DatakandidatEvent, DatakandidatState> {
       if (event is DataKandidatNew) {
         var data = await auth!.getdatakandidat();
         emit(DataKandidatLoaded(data: data));
+      }
+      if (event is DataKandidatSearch) {
+        List<DataKandidat> results = [];
+
+        if (event.value!.isEmpty) {
+          results = data!;
+        } else {
+          results = data!
+              .where((e) => e.nama_kandidat!
+                  .toLowerCase()
+                  .contains(event.value!.toLowerCase()))
+              .toList();
+        }
+        foundkandidat = results;
+        emit(DataKandidatLoaded(
+          data: foundkandidat,
+        ));
       }
     });
   }

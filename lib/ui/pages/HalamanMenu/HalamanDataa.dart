@@ -20,6 +20,7 @@ class HalamanDataa extends StatelessWidget {
               width: p1.maxWidth,
               height: p1.maxHeight,
               child: GridView.builder(
+                scrollDirection: Axis.horizontal,
                 itemCount: 5,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 4),

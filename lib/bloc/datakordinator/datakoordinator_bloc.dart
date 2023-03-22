@@ -5,6 +5,8 @@ import 'package:meta/meta.dart';
 import 'package:pilkada/models/dataKordinator.dart';
 import 'package:pilkada/services/AuthService.dart';
 
+import '../../models/datakordinatorkomunitas.dart';
+
 part 'datakoordinator_event.dart';
 part 'datakoordinator_state.dart';
 
@@ -17,10 +19,21 @@ class DatakoordinatorBloc
       if (event is DataKoordinatorConnect) {
         var dataprovinsi = await auth!.getdataprovinsi();
         var datakabupaten = await auth.getdatakabupaten();
+        var datakecamatan = await auth.getdatakecamatan();
+        var kordinatorkomunitas = await auth.getdatakordinatorkomunitas();
         var data = await auth.getdatakordinator(page: event.page);
 
-        var listkabupaten = [
+        var listkomunitas = [
           for (var x in data!)
+            kordinatorkomunitas!
+                .firstWhere((e) =>
+                    e.id.toString() == x.kordinatorKomunitas_id.toString())
+                .nama_komunitas
+                .toString()
+        ];
+        print(listkomunitas);
+        var listkabupaten = [
+          for (var x in data)
             datakabupaten!
                 .firstWhere((e) => e.id.toString() == x.regency_id.toString())
                 .name
@@ -33,8 +46,19 @@ class DatakoordinatorBloc
                 .name
                 .toString()
         ];
+        var listkecamatan = [
+          for (var x in data)
+            datakecamatan!
+                .firstWhere((e) => e.id.toString() == x.district_id.toString())
+                .name
+                .toString()
+        ];
         emit(DataKoordinatorLoaded(
-            data: data, provinsi: listprovinsi, kabupaten: listkabupaten));
+            data: data,
+            komunitas: listkomunitas,
+            provinsi: listprovinsi,
+            kabupaten: listkabupaten,
+            kecamatan: listkecamatan));
       }
       if (event is TambahDataKoordinator) {
         var data = await auth!.createkoordinator(
@@ -51,6 +75,11 @@ class DatakoordinatorBloc
           regency_id: event.regency_id,
         );
         emit(DatakoorUpdate(data: data));
+      }
+
+      if (event is DataKoordinatorConnectKomunitas) {
+        var data = await auth!.getdatakordinatorkomunitas();
+        emit(DataKoordinatorKomunitas(data: data));
       }
     });
   }

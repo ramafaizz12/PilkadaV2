@@ -12,7 +12,7 @@ class HalamanLoading extends StatelessWidget {
       backgroundColor: putih,
       body: Center(
         child: SpinKitThreeBounce(
-          color: colororange,
+          color: birumuda,
           size: 80,
         ),
       ),

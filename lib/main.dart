@@ -3,9 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pilkada/bloc/DataRelawan/datarelawan_bloc.dart';
 import 'package:pilkada/bloc/Dataprofile/dataprofile_bloc.dart';
 import 'package:pilkada/bloc/datakordinator/datakoordinator_bloc.dart';
+import 'package:pilkada/bloc/dataperolehansuara/dataperolehansuara_bloc.dart';
 import 'package:pilkada/bloc/loginandauth/auth_bloc.dart';
 import 'package:pilkada/bloc/loginandauth/login_bloc.dart';
-import 'package:pilkada/routes/router.dart';
+
 import 'package:pilkada/services/AuthService.dart';
 import 'bloc/DataDashboard/datadashboard_bloc.dart';
 
@@ -22,7 +23,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  final Kopirouter _appRouter = Kopirouter();
   Authentication auth = Authentication();
   AuthBloc authbloc = AuthBloc();
   @override
@@ -40,6 +40,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<DatatpsBloc>(
           create: (context) => DatatpsBloc(auth: auth),
+        ),
+        BlocProvider<DataperolehansuaraBloc>(
+          create: (context) => DataperolehansuaraBloc(auth: auth),
         ),
         BlocProvider<DataaksesorisBloc>(
           create: (context) => DataaksesorisBloc(auth: auth),

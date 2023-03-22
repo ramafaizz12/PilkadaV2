@@ -42,13 +42,8 @@ class _HalamanDetailRelawanState extends State<HalamanDetailRelawan> {
       builder: (p0, p1) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "Data Relawan",
-            textAlign: TextAlign.start,
-            style: textpoppin.copyWith(fontWeight: FontWeight.w600),
-          ),
           SizedBox(
-            height: p1.maxHeight * 0.02,
+            height: p1.maxHeight * 0.04,
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,

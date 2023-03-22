@@ -7,6 +7,7 @@ class HalamanCaleg extends StatefulWidget {
 
 class _HalamanCalegState extends State<HalamanCaleg> {
   List<DataKandidat> _allUsers = [];
+  int page = 4 + 1;
 
   List<DataKandidat> _foundUsers = [];
   @override
@@ -46,141 +47,191 @@ class _HalamanCalegState extends State<HalamanCaleg> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Data Jumlah Caleg",
-                textAlign: TextAlign.start,
-                style: textpoppin.copyWith(fontWeight: FontWeight.w600),
-              ),
-              Container(
-                width: p1.maxWidth * 0.25,
-                height: p1.maxHeight * 0.05,
-                decoration: BoxDecoration(
-                    color: colorbiru, borderRadius: BorderRadius.circular(12)),
-                child: TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => HalamanTemplateData(
-                                    haldata: HalamanTambahDatacaleg(),
-                                  )));
-                    },
-                    child: Text(
-                      "Tambah",
-                      style: textpoppin.copyWith(
-                          fontSize: p1.maxHeight * 0.02,
-                          color: putih,
-                          fontWeight: FontWeight.w600),
-                    )),
-              )
-            ],
-          ),
-          SizedBox(
-            height: p1.maxHeight * 0.02,
-          ),
-          SizedBox(
-            height: p1.maxHeight * 0.02,
-          ),
-          Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Container(
-                width: p1.maxWidth * 0.7,
-                height: p1.maxHeight * 0.06,
-                decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: colorbiru),
-                    borderRadius: BorderRadius.circular(15),
-                    color: putih),
-                child: TextField(
-                  onChanged: (value) => _runFilter(value),
-                  style: textpoppin.copyWith(fontSize: p1.maxHeight * 0.02),
-                  decoration: const InputDecoration(
-                      hintText: 'Masukkan Nama Kandidat',
-                      border: InputBorder.none,
-                      isDense: true,
-                      contentPadding: EdgeInsets.only(top: 5, left: 5)),
-                ),
+              ContainerSearch(
+                width: p1.maxWidth,
+                height: p1.maxHeight * 0.07,
+                hinttext: 'Cari Data Caleg',
+                cari: (value) => context
+                    .read<DatakandidatBloc>()
+                    .add(DataKandidatSearch(value: value)),
               ),
-              Container(
-                width: p1.maxWidth * 0.25,
-                height: p1.maxHeight * 0.05,
-                decoration: BoxDecoration(
-                    color: colorbiru, borderRadius: BorderRadius.circular(12)),
-                child: TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      "Cari",
-                      style: textpoppin.copyWith(
-                          fontSize: p1.maxHeight * 0.02,
-                          color: putih,
-                          fontWeight: FontWeight.w600),
-                    )),
-              )
+              // ContainerTambah(
+              //   width: p1.maxWidth * 0.15,
+              //   height: p1.maxHeight * 0.07,
+              //   fungsi: () {
+              //     Navigator.push(
+              //         context,
+              //         MaterialPageRoute(
+              //             builder: (context) => HalamanTemplateBaru(
+              //                   nama: 'Tambah Caleg',
+              //                   halamandata: HalamanTambahDatacaleg(),
+              //                 )));
+              //   },
+              // )
             ],
+          ),
+          SizedBox(
+            height: p1.maxHeight * 0.02,
           ),
           SizedBox(
               width: p1.maxWidth,
-              height: p1.maxHeight * 0.7,
-              child: _foundUsers.isNotEmpty
-                  ? GridView.builder(
-                      itemCount: _foundUsers.length,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          childAspectRatio: (1 / .9),
-                          crossAxisCount: 1,
-                          mainAxisSpacing: p1.maxHeight * 0.02,
-                          crossAxisSpacing: 5),
-                      itemBuilder: (context, index) => Container(
-                        width: p1.maxWidth,
-                        height: p1.maxHeight * 0.2,
-                        margin: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                            color: abuabu,
-                            borderRadius: BorderRadius.circular(15)),
-                        child: Column(
-                          children: [
-                            Container(
-                              width: p1.maxWidth * 0.94,
-                              height: p1.maxHeight * 0.2,
-                              child: Image.network(
-                                'https://web-sisfopilkada.taekwondosulsel.info/public/storage/${_foundUsers[index].foto}',
-                                fit: BoxFit.fitWidth,
-                              ),
-                            ),
-                            // CircleAvatar(
-                            //   radius: 50,
-                            //   backgroundImage: NetworkImage(
-                            //       'https://web-sisfopilkada.taekwondosulsel.info/public/storage/${_foundUsers[index].foto}'),
-                            // ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "No.Kandidat\nNama Kandidat\nNama Wakil\nVisi Misi\nProgram",
-                                  style: textpoppin.copyWith(
-                                      fontSize: p1.maxHeight * 0.02),
-                                ),
-                                Flexible(
-                                  flex: 1,
-                                  child: Text(
-                                    "${_foundUsers[index].no_kandidat}\n${_foundUsers[index].nama_kandidat}\n${_foundUsers[index].nama_wakil}\n${_foundUsers[index].visi_misi}\n${_foundUsers[index].program}",
-                                    textAlign: TextAlign.center,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: textpoppin.copyWith(
-                                        fontSize: p1.maxHeight * 0.02,
-                                        fontWeight: FontWeight.w600),
+              height: p1.maxHeight * 0.8,
+              child: BlocBuilder<DatakandidatBloc, DatakandidatState>(
+                builder: (context, state) {
+                  return state is DataKandidatLoaded
+                      ? state.data!.isNotEmpty
+                          ? GridView.builder(
+                              itemCount: state.data!.length,
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                      childAspectRatio: (1 / .9),
+                                      crossAxisCount: 1,
+                                      mainAxisSpacing: p1.maxHeight * 0.02,
+                                      crossAxisSpacing: 5),
+                              itemBuilder: (context, index) => Animate(
+                                effects: [
+                                  FadeEffect(duration: Duration(seconds: 2)),
+                                  ScaleEffect(duration: Duration(seconds: 1))
+                                ],
+                                child: Container(
+                                  width: p1.maxWidth,
+                                  height: p1.maxHeight * 0.2,
+                                  margin: const EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color:
+                                                Colors.black.withOpacity(0.5),
+                                            spreadRadius: 0.5,
+                                            blurRadius: 5,
+                                            offset: const Offset(2, 4))
+                                      ],
+                                      color: abuabu,
+                                      borderRadius: BorderRadius.circular(15)),
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        width: p1.maxWidth * 0.94,
+                                        height: p1.maxHeight * 0.2,
+                                        child: Image.network(
+                                          'https://web-sisfopilkada.taekwondosulsel.info/public/storage/${state.data![index].foto}',
+                                          fit: BoxFit.fitWidth,
+                                        ),
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            "No.Kandidat\nNama Kandidat\nNama Wakil\nVisi Misi\nProgram",
+                                            style: textpoppin.copyWith(
+                                                fontSize: p1.maxHeight * 0.02),
+                                          ),
+                                          Flexible(
+                                            flex: 1,
+                                            child: Text(
+                                              "${state.data![index].no_kandidat}\n${state.data![index].nama_kandidat}\n${state.data![index].nama_wakil}\n${state.data![index].visi_misi}\n${state.data![index].program}",
+                                              textAlign: TextAlign.center,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: textpoppin.copyWith(
+                                                  fontSize: p1.maxHeight * 0.02,
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                          )
+                                        ],
+                                      )
+                                    ],
                                   ),
-                                )
-                              ],
+                                ),
+                              ),
                             )
-                          ],
-                        ),
-                      ),
-                    )
-                  : SpinKitDualRing(
-                      color: colororange,
-                    ))
+                          : Center(
+                              child: Text(
+                              "Data Tidak Ditemukan",
+                              style: textpoppin.copyWith(
+                                  fontSize: p1.maxWidth * 0.04),
+                            ))
+                      : SpinKitDualRing(
+                          color: birumuda,
+                        );
+                },
+              )),
+          Center(
+            child: Container(
+              margin: EdgeInsets.only(top: p1.maxHeight * 0.02),
+              width: p1.maxWidth * 0.7,
+              height: p1.maxHeight * 0.06,
+              decoration: BoxDecoration(boxShadow: [
+                BoxShadow(color: hitam.withOpacity(0.2), offset: Offset(3, 3))
+              ], color: birumuda, borderRadius: BorderRadius.circular(15)),
+              child: Row(
+                children: [
+                  Flexible(
+                    flex: 1,
+                    child: TextButton(
+                      onPressed: () {
+                        context
+                            .read<DatarelawanBloc>()
+                            .add(DataRelawanConnect(page: '1'));
+                      },
+                      child:
+                          Text("1", style: textpoppin.copyWith(color: putih)),
+                    ),
+                  ),
+                  Flexible(
+                    flex: 1,
+                    child: TextButton(
+                      onPressed: () {
+                        context
+                            .read<DatarelawanBloc>()
+                            .add(DataRelawanConnect(page: '2'));
+                      },
+                      child:
+                          Text("2", style: textpoppin.copyWith(color: putih)),
+                    ),
+                  ),
+                  Flexible(
+                    flex: 1,
+                    child: TextButton(
+                      onPressed: () {
+                        context
+                            .read<DatarelawanBloc>()
+                            .add(DataRelawanConnect(page: '3'));
+                      },
+                      child:
+                          Text("3", style: textpoppin.copyWith(color: putih)),
+                    ),
+                  ),
+                  Flexible(
+                    flex: 1,
+                    child: TextButton(
+                      onPressed: () {
+                        context
+                            .read<DatarelawanBloc>()
+                            .add(DataRelawanConnect(page: '4'));
+                      },
+                      child:
+                          Text("4", style: textpoppin.copyWith(color: putih)),
+                    ),
+                  ),
+                  Flexible(
+                    flex: 1,
+                    child: TextButton(
+                      onPressed: () {
+                        context
+                            .read<DatarelawanBloc>()
+                            .add(DataRelawanConnect(page: page.toString()));
+                      },
+                      child:
+                          Text(">", style: textpoppin.copyWith(color: putih)),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          )
         ],
       ),
     );

@@ -5,3 +5,7 @@ part 'Containetps.dart';
 part 'ContainerInput.dart';
 part 'ContainerIconData.dart';
 part 'ContainerData.dart';
+part 'ViewSvg.dart';
+part 'ButtonUtama.dart';
+part 'ContainerSearch.dart';
+part 'ContainerTambah.dart';

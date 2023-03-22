@@ -41,11 +41,6 @@ class _HalamanDetailKoordinatorState extends State<HalamanDetailKoordinator> {
       builder: (p0, p1) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "Data Koordinator",
-            textAlign: TextAlign.start,
-            style: textpoppin.copyWith(fontWeight: FontWeight.w600),
-          ),
           SizedBox(
             height: p1.maxHeight * 0.02,
           ),

@@ -18,7 +18,7 @@ class TambahDataRelawan extends DatarelawanEvent {
   String? agama;
   File? scan_ktp;
   String? no_hp;
-
+  // int? kordinator_id;
   File? foto;
 
   String? Province_id;
@@ -34,6 +34,7 @@ class TambahDataRelawan extends DatarelawanEvent {
       this.jkl,
       this.agama,
       this.no_hp,
+      // this.kordinator_id,
       this.scan_ktp,
       this.foto,
       this.Province_id,
@@ -49,4 +50,10 @@ class DatarelawanSearch extends DatarelawanEvent {
   String? value;
 
   DatarelawanSearch({this.value});
+}
+
+class DataGrupRelawanSearch extends DatarelawanEvent {
+  String? value;
+
+  DataGrupRelawanSearch({this.value});
 }

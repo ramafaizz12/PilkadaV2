@@ -10,7 +10,7 @@ class DataKordinator {
   String? tanggal_lahir;
   String? jkl;
   String? agama;
-
+  String? kordinatorKomunitas_id;
   String? no_hp;
   String? foto;
   String? scan_ktp;
@@ -22,6 +22,7 @@ class DataKordinator {
     this.id,
     this.nama_lengkap,
     this.nik,
+    this.kordinatorKomunitas_id,
     this.tempat_lahir,
     this.tanggal_lahir,
     this.jkl,

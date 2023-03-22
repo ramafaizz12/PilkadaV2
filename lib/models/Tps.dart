@@ -8,12 +8,16 @@ class Datatps {
   String? regency_id;
   String? district_id;
   String? tps;
+  String? alamat;
+  String? image;
   String? ket;
 
   Datatps(
       {this.id,
       this.Province_id,
       this.district_id,
+      this.alamat,
+      this.image,
       this.regency_id,
       this.ket,
       this.tps});

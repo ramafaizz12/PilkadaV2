@@ -9,6 +9,7 @@ class Wrapper extends StatelessWidget {
     return BlocBuilder<AuthBloc, AuthState>(builder: (context, state) {
       if (state is AuthAuthenticated) {
         context.read<DataprofileBloc>().add(DataProfileConnect());
+        // return HomePage(haldata: HalamanDataa(), dashboard: DashboardAdmin());
         return Role();
       }
       if (state is AuthUthenticated) {

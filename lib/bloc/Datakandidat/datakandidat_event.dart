@@ -23,3 +23,9 @@ class TambahDataKandidat extends DatakandidatEvent {
 }
 
 class DataKandidatNew extends DatakandidatEvent {}
+
+class DataKandidatSearch extends DatakandidatEvent {
+  String? value;
+
+  DataKandidatSearch({this.value});
+}

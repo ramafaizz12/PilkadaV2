@@ -18,7 +18,6 @@ class HalamanProfile extends StatefulWidget {
 }
 
 class _HalamanProfileState extends State<HalamanProfile> {
-  bool aktif = true;
   TextEditingController nikcontrol = TextEditingController();
   TextEditingController namacontrol = TextEditingController();
   TextEditingController alamatcontrol = TextEditingController();
@@ -41,31 +40,31 @@ class _HalamanProfileState extends State<HalamanProfile> {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-      builder: (p0, p1) => BlocBuilder<DataprofileBloc, DataprofileState>(
-        builder: (context, state) {
-          return state is DataprofileLoaded
-              ? Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+        builder: (p0, p1) => Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: Container(
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(color: putih, width: 8.0)),
+                    width: p1.maxWidth * 0.3,
+                    height: p1.maxHeight * 0.3,
+                    child: BlocBuilder<DataprofileBloc, DataprofileState>(
+                      builder: (context, state) {
+                        return state is DataprofileLoaded
+                            ? CircleAvatar(
+                                radius: 50,
+                                backgroundImage: NetworkImage(
+                                    'https://web-sisfopilkada.taekwondosulsel.info/public/storage/${state.data!.foto}'))
+                            : Text("");
+                      },
+                    ),
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text(
-                      "Profile",
-                      textAlign: TextAlign.start,
-                      style: textpoppin.copyWith(fontWeight: FontWeight.w600),
-                    ),
-                    SizedBox(
-                      height: p1.maxHeight * 0.01,
-                    ),
-                    Center(
-                      child: SizedBox(
-                        width: p1.maxWidth * 0.3,
-                        height: p1.maxHeight * 0.3,
-                        child: CircleAvatar(
-                          radius: 80,
-                          backgroundImage: NetworkImage(
-                              'https://web-pilkada.taekwondosulsel.info/public/storage/${state.data!.foto}'),
-                        ),
-                      ),
-                    ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -74,164 +73,62 @@ class _HalamanProfileState extends State<HalamanProfile> {
                           style: textpoppin.copyWith(
                               fontSize: p1.maxHeight * 0.02),
                         ),
-                        Container(
-                          width: p1.maxWidth,
-                          height: p1.maxHeight * 0.05,
-                          decoration: BoxDecoration(
-                              color: aktif ? hitam.withOpacity(0.2) : putih,
-                              border: Border.all(width: 1.0, color: hitam),
-                              borderRadius: BorderRadius.circular(12)),
-                          child: TextField(
-                            controller: namacontrol,
-                            readOnly: aktif,
-                            onTap: () {},
-                            maxLines: 1,
-                            style: textpoppin.copyWith(
-                                fontSize: p1.maxHeight * 0.02),
-                            decoration: const InputDecoration(
-                                border: InputBorder.none,
-                                isDense: true,
-                                contentPadding:
-                                    EdgeInsets.only(top: 5, left: 5)),
-                          ),
-                        )
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
                         Text(
                           "Nama Daerah",
                           style: textpoppin.copyWith(
                               fontSize: p1.maxHeight * 0.02),
                         ),
-                        Container(
-                          width: p1.maxWidth,
-                          height: p1.maxHeight * 0.05,
-                          decoration: BoxDecoration(
-                              color: aktif ? hitam.withOpacity(0.2) : putih,
-                              border: Border.all(width: 1.0, color: hitam),
-                              borderRadius: BorderRadius.circular(12)),
-                          child: TextField(
-                            controller: namadaerahcontrol,
-                            readOnly: aktif,
-                            onTap: () {},
-                            maxLines: 1,
-                            style: textpoppin.copyWith(
-                                fontSize: p1.maxHeight * 0.02),
-                            decoration: const InputDecoration(
-                                border: InputBorder.none,
-                                isDense: true,
-                                contentPadding:
-                                    EdgeInsets.only(top: 5, left: 5)),
-                          ),
-                        )
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
                         Text(
                           "NIK",
                           style: textpoppin.copyWith(
                               fontSize: p1.maxHeight * 0.02),
                         ),
-                        Container(
-                          width: p1.maxWidth,
-                          height: p1.maxHeight * 0.05,
-                          decoration: BoxDecoration(
-                              color: aktif ? hitam.withOpacity(0.2) : putih,
-                              border: Border.all(width: 1.0, color: hitam),
-                              borderRadius: BorderRadius.circular(12)),
-                          child: TextField(
-                            controller: nikcontrol,
-                            readOnly: aktif,
-                            onTap: () {},
-                            maxLines: 1,
-                            style: textpoppin.copyWith(
-                                fontSize: p1.maxHeight * 0.02),
-                            decoration: const InputDecoration(
-                                border: InputBorder.none,
-                                isDense: true,
-                                contentPadding:
-                                    EdgeInsets.only(top: 5, left: 5)),
-                          ),
-                        )
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
                         Text(
                           "Alamat",
                           style: textpoppin.copyWith(
                               fontSize: p1.maxHeight * 0.02),
                         ),
-                        Container(
-                          width: p1.maxWidth,
-                          height: p1.maxHeight * 0.05,
-                          decoration: BoxDecoration(
-                              color: aktif ? hitam.withOpacity(0.2) : putih,
-                              border: Border.all(width: 1.0, color: hitam),
-                              borderRadius: BorderRadius.circular(12)),
-                          child: TextField(
-                            controller: alamatcontrol,
-                            readOnly: aktif,
-                            onTap: () {},
-                            maxLines: 1,
-                            style: textpoppin.copyWith(
-                                fontSize: p1.maxHeight * 0.02),
-                            decoration: const InputDecoration(
-                                border: InputBorder.none,
-                                isDense: true,
-                                contentPadding:
-                                    EdgeInsets.only(top: 5, left: 5)),
-                          ),
-                        )
                       ],
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Nama Partai",
-                          style: textpoppin.copyWith(
-                              fontSize: p1.maxHeight * 0.02),
-                        ),
-                        Container(
-                          width: p1.maxWidth,
-                          height: p1.maxHeight * 0.05,
-                          decoration: BoxDecoration(
-                              color: aktif ? hitam.withOpacity(0.2) : putih,
-                              border: Border.all(width: 1.0, color: hitam),
-                              borderRadius: BorderRadius.circular(12)),
-                          child: TextField(
-                            controller: namapartaicontrol,
-                            readOnly: aktif,
-                            onTap: () {},
-                            maxLines: 1,
-                            style: textpoppin.copyWith(
-                                fontSize: p1.maxHeight * 0.02),
-                            decoration: const InputDecoration(
-                                border: InputBorder.none,
-                                isDense: true,
-                                contentPadding:
-                                    EdgeInsets.only(top: 5, left: 5)),
-                          ),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: p1.maxHeight * 0.01,
+                    BlocBuilder<DataprofileBloc, DataprofileState>(
+                      builder: (context, state) {
+                        return state is DataprofileLoaded
+                            ? Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "${state.data!.name}",
+                                    style: textpoppin.copyWith(
+                                        fontSize: p1.maxHeight * 0.02),
+                                  ),
+                                  Text(
+                                    "${state.data!.asal}",
+                                    style: textpoppin.copyWith(
+                                        fontSize: p1.maxHeight * 0.02),
+                                  ),
+                                  Text(
+                                    "${state.data!.nik}",
+                                    style: textpoppin.copyWith(
+                                        fontSize: p1.maxHeight * 0.02),
+                                  ),
+                                  Text(
+                                    "${state.data!.alamat}",
+                                    style: textpoppin.copyWith(
+                                        fontSize: p1.maxHeight * 0.02),
+                                  ),
+                                ],
+                              )
+                            : SpinKitDualRing(
+                                color: birumuda,
+                              );
+                      },
                     ),
                   ],
-                )
-              : Text(
-                  "Failed To Get Profile",
-                  style: textpoppin.copyWith(fontSize: p1.maxHeight * 0.02),
-                );
-        },
-      ),
-    );
+                ),
+                SizedBox(
+                  height: p1.maxHeight * 0.01,
+                ),
+              ],
+            ));
   }
 }

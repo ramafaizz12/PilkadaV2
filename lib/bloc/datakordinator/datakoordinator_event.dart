@@ -37,3 +37,5 @@ class TambahDataKoordinator extends DatakoordinatorEvent {
       this.regency_id,
       this.scan_ktp});
 }
+
+class DataKoordinatorConnectKomunitas extends DatakoordinatorEvent {}

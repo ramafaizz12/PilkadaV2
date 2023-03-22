@@ -44,11 +44,6 @@ class _HalamanDetailDPTState extends State<HalamanDetailDPT> {
       builder: (p0, p1) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "Data DPT",
-            textAlign: TextAlign.start,
-            style: textpoppin.copyWith(fontWeight: FontWeight.w600),
-          ),
           SizedBox(
             height: p1.maxHeight * 0.02,
           ),

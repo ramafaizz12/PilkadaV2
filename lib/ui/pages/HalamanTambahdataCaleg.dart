@@ -87,13 +87,33 @@ class _HalamanTambahDatacalegState extends State<HalamanTambahDatacaleg> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Tambah Data Kandidat",
-                textAlign: TextAlign.start,
-                style: textpoppin.copyWith(fontWeight: FontWeight.w600),
-              ),
-              SizedBox(
-                height: p1.maxHeight * 0.02,
+              Center(
+                child: InkWell(
+                  onTap: () {
+                    pickfoto();
+                  },
+                  child: Container(
+                      width: p1.maxWidth * 0.25,
+                      height: p1.maxHeight * 0.25,
+                      decoration:
+                          BoxDecoration(shape: BoxShape.circle, color: putih),
+                      child: LayoutBuilder(
+                        builder: (p0, p2) => (_file != null)
+                            ? Image.file(_file!)
+                            : Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.add,
+                                      color: pinkabu, size: p2.maxWidth * 0.5),
+                                  Text("Tambah Foto",
+                                      style: textpoppin.copyWith(
+                                          color: pinkabu,
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: p2.maxHeight * 0.05))
+                                ],
+                              ),
+                      )),
+                ),
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -234,88 +254,35 @@ class _HalamanTambahDatacalegState extends State<HalamanTambahDatacaleg> {
               SizedBox(
                 height: p1.maxHeight * 0.02,
               ),
-              Row(
-                children: [
-                  Container(
-                    margin: const EdgeInsets.all(8),
-                    width: p1.maxWidth * 0.4,
-                    height: p1.maxHeight * 0.05,
-                    decoration: BoxDecoration(
-                        color: colorbiru,
-                        borderRadius: BorderRadius.circular(15),
-                        boxShadow: [
-                          BoxShadow(
-                              color: hitam.withOpacity(0.2),
-                              offset: const Offset(3, 3))
-                        ]),
-                    child: TextButton(
-                        onPressed: () {
-                          pickfoto();
-                        },
-                        child: Text(
-                          "Upload Foto",
-                          style: textpoppin.copyWith(
-                              fontSize: p1.maxHeight * 0.02,
-                              color: putih,
-                              fontWeight: FontWeight.w600),
-                        )),
-                  ),
-                ],
-              ),
               Padding(
                 padding: EdgeInsets.only(
-                    left: p1.maxWidth * 0.39, top: p1.maxHeight * 0.02),
-                child: Row(
-                  children: [
-                    Container(
-                      width: p1.maxWidth * 0.3,
-                      height: p1.maxHeight * 0.07,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          color: putih,
-                          border: Border.all(color: colorbiru, width: 1.0)),
-                      child: TextButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: Text(
-                            "Batal",
-                            style: textpoppin.copyWith(
-                                fontSize: p1.maxHeight * 0.02,
-                                color: colorbiru,
-                                fontWeight: FontWeight.w600),
-                          )),
-                    ),
-                    SizedBox(
-                      width: p1.maxWidth * 0.01,
-                    ),
-                    Container(
-                      width: p1.maxWidth * 0.3,
-                      height: p1.maxHeight * 0.07,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          boxShadow: [
-                            BoxShadow(
-                                color: hitam.withOpacity(0.2),
-                                offset: const Offset(3, 3))
-                          ],
-                          color: colorbiru,
-                          border: Border.all(color: colorbiru, width: 1.0)),
-                      child: TextButton(
-                          onPressed: () {
-                            _tambahdata();
-                          },
-                          child: Text(
-                            "Simpan",
-                            style: textpoppin.copyWith(
-                                fontSize: p1.maxHeight * 0.02,
-                                color: putih,
-                                fontWeight: FontWeight.w600),
-                          )),
-                    ),
-                  ],
+                    left: p1.maxWidth * 0.27, top: p1.maxHeight * 0.02),
+                child: Container(
+                  width: p1.maxWidth * 0.5,
+                  height: p1.maxHeight * 0.07,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      boxShadow: [
+                        BoxShadow(
+                            color: hitam.withOpacity(0.2),
+                            offset: const Offset(3, 3))
+                      ],
+                      color: birumuda,
+                      border: Border.all(color: colorbiru, width: 1.0)),
+                  child: TextButton(
+                      onPressed: () {
+                        _tambahdata();
+                        setState(() {});
+                      },
+                      child: Text(
+                        "Simpan",
+                        style: textpoppin.copyWith(
+                            fontSize: p1.maxHeight * 0.02,
+                            color: hitam,
+                            fontWeight: FontWeight.w600),
+                      )),
                 ),
-              )
+              ),
             ],
           ),
         ),
