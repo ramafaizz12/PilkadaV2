@@ -3,7 +3,7 @@ part of 'pages.dart';
 /// CameraApp is the Main Application.
 class CameraPage extends StatefulWidget {
   final List<CameraDescription>? cameras;
-  CameraPage({this.cameras, Key? key}) : super(key: key);
+  const CameraPage({this.cameras, Key? key}) : super(key: key);
 
   @override
   _CameraPageState createState() => _CameraPageState();
@@ -75,7 +75,7 @@ class _CameraPageState extends State<CameraPage> {
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        child: Icon(
+                        child: const Icon(
                           color: birumuda,
                           Icons.arrow_back,
                         ),
@@ -88,7 +88,7 @@ class _CameraPageState extends State<CameraPage> {
                           setState(() {});
                           _kepageutama();
                         },
-                        child: Icon(
+                        child: const Icon(
                           color: birumuda,
                           Icons.camera,
                         ),
@@ -98,7 +98,7 @@ class _CameraPageState extends State<CameraPage> {
                         onPressed: () async {
                           controller.setFlashMode(FlashMode.auto);
                         },
-                        child: Icon(
+                        child: const Icon(
                           color: birumuda,
                           Icons.light_mode,
                         ),

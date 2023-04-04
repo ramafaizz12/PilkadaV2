@@ -3,7 +3,11 @@ part of 'datakandidat_bloc.dart';
 @immutable
 abstract class DatakandidatEvent {}
 
-class DataKandidatConnect extends DatakandidatEvent {}
+class DataKandidatConnect extends DatakandidatEvent {
+  String page;
+
+  DataKandidatConnect({this.page = ''});
+}
 
 class TambahDataKandidat extends DatakandidatEvent {
   String? no_kandidat;

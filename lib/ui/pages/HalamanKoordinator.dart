@@ -6,7 +6,7 @@ class HalamanKoordinator extends StatefulWidget {
   String gruprelawan;
 
   HalamanKoordinator(
-      {this.nama = 'Koordinator 1',
+      {super.key, this.nama = 'Koordinator 1',
       this.gruprelawan = 'Group 1',
       this.gambar = ''});
 
@@ -68,7 +68,7 @@ class _HalamanKoordinatorState extends State<HalamanKoordinator> {
                                       mainAxisSpacing: p1.maxHeight * 0.02,
                                       crossAxisSpacing: 5),
                               itemBuilder: (context, index) => Animate(
-                                effects: [
+                                effects: const [
                                   FadeEffect(duration: Duration(seconds: 2)),
                                   ScaleEffect(duration: Duration(seconds: 1))
                                 ],
@@ -90,9 +90,9 @@ class _HalamanKoordinatorState extends State<HalamanKoordinator> {
                                                       agama:
                                                           '${state.data![index].agama}',
                                                       provinsi:
-                                                          '${state.provinsi![index]}',
+                                                          state.provinsi![index],
                                                       kabupaten:
-                                                          '${state.kabupaten![index]}',
+                                                          state.kabupaten![index],
                                                       foto:
                                                           '${state.data![index].foto}'),
                                                 )));
@@ -138,11 +138,11 @@ class _HalamanKoordinatorState extends State<HalamanKoordinator> {
                                                 Container(
                                                     width: p2.maxWidth * 0.1,
                                                     height: p2.maxHeight * 0.1,
-                                                    decoration: BoxDecoration(
+                                                    decoration: const BoxDecoration(
                                                         shape: BoxShape.circle,
                                                         color: pinkabu)),
                                                 Text(
-                                                    "${state.provinsi![index]}",
+                                                    state.provinsi![index],
                                                     style: textpoppin.copyWith(
                                                         color: hitam,
                                                         fontSize:
@@ -152,11 +152,11 @@ class _HalamanKoordinatorState extends State<HalamanKoordinator> {
                                                 Container(
                                                     width: p2.maxWidth * 0.1,
                                                     height: p2.maxHeight * 0.1,
-                                                    decoration: BoxDecoration(
+                                                    decoration: const BoxDecoration(
                                                         shape: BoxShape.circle,
                                                         color: pinkabu)),
                                                 Text(
-                                                    "${state.kabupaten![index]}",
+                                                    state.kabupaten![index],
                                                     style: textpoppin.copyWith(
                                                         color: hitam,
                                                         fontSize: p2.maxHeight *
@@ -166,11 +166,11 @@ class _HalamanKoordinatorState extends State<HalamanKoordinator> {
                                                 Container(
                                                     width: p2.maxWidth * 0.1,
                                                     height: p2.maxHeight * 0.1,
-                                                    decoration: BoxDecoration(
+                                                    decoration: const BoxDecoration(
                                                         shape: BoxShape.circle,
                                                         color: pinkabu)),
                                                 Text(
-                                                    "${state.komunitas![index]}",
+                                                    state.komunitas![index],
                                                     style: textpoppin.copyWith(
                                                         color: hitam,
                                                         fontSize:
@@ -191,7 +191,7 @@ class _HalamanKoordinatorState extends State<HalamanKoordinator> {
                               style: textpoppin.copyWith(
                                   fontSize: p1.maxWidth * 0.04),
                             ))
-                      : SpinKitDualRing(
+                      : const SpinKitDualRing(
                           color: birumuda,
                         );
                 },
@@ -202,7 +202,7 @@ class _HalamanKoordinatorState extends State<HalamanKoordinator> {
               width: p1.maxWidth * 0.7,
               height: p1.maxHeight * 0.06,
               decoration: BoxDecoration(boxShadow: [
-                BoxShadow(color: hitam.withOpacity(0.2), offset: Offset(3, 3))
+                BoxShadow(color: hitam.withOpacity(0.2), offset: const Offset(3, 3))
               ], color: birumuda, borderRadius: BorderRadius.circular(15)),
               child: Row(
                 children: [

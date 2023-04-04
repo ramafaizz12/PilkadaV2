@@ -1,6 +1,8 @@
 part of 'pages.dart';
 
 class HalamanTambahDataKoordinator extends StatefulWidget {
+  const HalamanTambahDataKoordinator({super.key});
+
   @override
   State<HalamanTambahDataKoordinator> createState() =>
       _HalamanTambahDataKoordinatorState();
@@ -111,7 +113,7 @@ class _HalamanTambahDataKoordinatorState
               }
             }
 
-            return SizedBox();
+            return const SizedBox();
           },
         ),
         SingleChildScrollView(
@@ -129,7 +131,7 @@ class _HalamanTambahDataKoordinatorState
                       child: Container(
                           width: p1.maxWidth * 0.25,
                           height: p1.maxHeight * 0.25,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               shape: BoxShape.circle, color: putih),
                           child: LayoutBuilder(
                             builder: (p0, p2) => (_file != null)
@@ -405,7 +407,7 @@ class _HalamanTambahDataKoordinatorState
                     borderRadius: BorderRadius.circular(15),
                     boxShadow: [
                       BoxShadow(
-                          color: hitam.withOpacity(0.2), offset: Offset(3, 3))
+                          color: hitam.withOpacity(0.2), offset: const Offset(3, 3))
                     ]),
                 child: TextButton(
                     onPressed: () async {
@@ -457,7 +459,7 @@ class _HalamanTambahDataKoordinatorState
                       )),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
             ],
           ),
         ),

@@ -6,7 +6,7 @@ class HalamanAksesoris extends StatefulWidget {
   String ket;
 
   HalamanAksesoris(
-      {this.nama = 'Nama 1', this.alamat = 'Makassar', this.ket = '-'});
+      {super.key, this.nama = 'Nama 1', this.alamat = 'Makassar', this.ket = '-'});
 
   @override
   State<HalamanAksesoris> createState() => _HalamanAksesorisState();
@@ -20,6 +20,7 @@ class _HalamanAksesorisState extends State<HalamanAksesoris> {
     super.initState();
   }
 
+  @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (p0, p1) => Column(
@@ -53,7 +54,7 @@ class _HalamanAksesorisState extends State<HalamanAksesoris> {
                                       mainAxisSpacing: p1.maxHeight * 0.02,
                                       crossAxisSpacing: 5),
                               itemBuilder: (context, index) => Animate(
-                                effects: [
+                                effects: const [
                                   FadeEffect(duration: Duration(seconds: 2)),
                                   ScaleEffect(duration: Duration(seconds: 1))
                                 ],
@@ -83,7 +84,7 @@ class _HalamanAksesorisState extends State<HalamanAksesoris> {
                                           Container(
                                               width: p2.maxWidth * 0.1,
                                               height: p2.maxHeight * 0.1,
-                                              decoration: BoxDecoration(
+                                              decoration: const BoxDecoration(
                                                   shape: BoxShape.circle,
                                                   color: pinkabu)),
                                           Text("${state.data![index].alamat}",
@@ -96,7 +97,7 @@ class _HalamanAksesorisState extends State<HalamanAksesoris> {
                                           Container(
                                               width: p2.maxWidth * 0.1,
                                               height: p2.maxHeight * 0.1,
-                                              decoration: BoxDecoration(
+                                              decoration: const BoxDecoration(
                                                   shape: BoxShape.circle,
                                                   color: pinkabu)),
                                           Text(
@@ -118,7 +119,7 @@ class _HalamanAksesorisState extends State<HalamanAksesoris> {
                               style: textpoppin.copyWith(
                                   fontSize: p1.maxWidth * 0.04),
                             ))
-                      : SpinKitDualRing(
+                      : const SpinKitDualRing(
                           color: birumuda,
                         );
                 },

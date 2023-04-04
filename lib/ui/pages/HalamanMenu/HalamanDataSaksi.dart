@@ -14,6 +14,8 @@ class HalamanDataSaksi extends StatelessWidget {
     'SAKSI TPS',
   ];
 
+  HalamanDataSaksi({super.key});
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -41,17 +43,17 @@ class HalamanDataSaksi extends StatelessWidget {
                                 : (index == 1)
                                     ? HalamanTemplateawal(
                                         nama: 'Data Perolehan Suara',
-                                        halamandata: DataPerolehanSuara())
+                                        halamandata: const DataPerolehanSuara())
                                     : (index == 2)
                                         ? HalamanTemplateawal(
                                             nama: 'Data Jumlah DPT',
-                                            halamandata: HalamanJumlahdpt())
+                                            halamandata: const HalamanJumlahdpt())
                                         : (index == 3)
                                             ? HalamanTemplateawal(
                                                 nama: 'Data Saksi',
                                                 halamandata:
                                                     HalamanDataSaksitps())
-                                            : Text("")));
+                                            : const Text("")));
                   },
                   gambar: gambar[index],
                   nama: nama[index],

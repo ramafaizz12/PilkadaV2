@@ -6,7 +6,7 @@ class HalamanDatarelawancoba extends StatefulWidget {
   String gruprelawan;
 
   HalamanDatarelawancoba(
-      {this.namarelawan = 'Relawan 1',
+      {super.key, this.namarelawan = 'Relawan 1',
       this.gruprelawan = 'Group 1',
       this.gambar = ''});
 
@@ -43,7 +43,7 @@ class _HalamanDatarelawancobaState extends State<HalamanDatarelawancoba> {
                 builder: (context, state) {
                   if (state is DataprofileLoaded) {
                     if (state.data!.role == 'admin') {
-                      return Text("");
+                      return const Text("");
                     }
                   }
                   return ContainerTambah(
@@ -55,7 +55,7 @@ class _HalamanDatarelawancobaState extends State<HalamanDatarelawancoba> {
                           MaterialPageRoute(
                               builder: (context) => HalamanTemplateBaru(
                                     nama: 'Tambah Relawan',
-                                    halamandata: HalamanTambahDataRelawan(),
+                                    halamandata: const HalamanTambahDataRelawan(),
                                   )));
                     },
                   );
@@ -83,7 +83,7 @@ class _HalamanDatarelawancobaState extends State<HalamanDatarelawancoba> {
                                       mainAxisSpacing: p1.maxHeight * 0.02,
                                       crossAxisSpacing: 5),
                               itemBuilder: (context, index) => Animate(
-                                    effects: [
+                                    effects: const [
                                       FadeEffect(
                                           duration: Duration(seconds: 1)),
                                       ScaleEffect(
@@ -115,9 +115,9 @@ class _HalamanDatarelawancobaState extends State<HalamanDatarelawancoba> {
                                                           jeniskelamin:
                                                               '${state.data![index].jkl}',
                                                           gruprelawan:
-                                                              '${state.gruprelawan![index]}',
+                                                              state.gruprelawan![index],
                                                           kabupaten:
-                                                              '${state.datakabupaten![index]}'),
+                                                              state.datakabupaten![index]),
                                                     )));
                                       },
                                       child: Container(
@@ -165,13 +165,13 @@ class _HalamanDatarelawancobaState extends State<HalamanDatarelawancoba> {
                                                         height:
                                                             p2.maxHeight * 0.1,
                                                         decoration:
-                                                            BoxDecoration(
+                                                            const BoxDecoration(
                                                                 shape: BoxShape
                                                                     .circle,
                                                                 color:
                                                                     pinkabu)),
                                                     Text(
-                                                        "${state.gruprelawan![index]}",
+                                                        state.gruprelawan![index],
                                                         style:
                                                             textpoppin.copyWith(
                                                                 color: hitam,
@@ -193,7 +193,7 @@ class _HalamanDatarelawancobaState extends State<HalamanDatarelawancoba> {
                               style: textpoppin.copyWith(
                                   fontSize: p1.maxWidth * 0.04),
                             ))
-                      : SpinKitDualRing(
+                      : const SpinKitDualRing(
                           color: birumuda,
                         );
                 },
@@ -204,7 +204,7 @@ class _HalamanDatarelawancobaState extends State<HalamanDatarelawancoba> {
               width: p1.maxWidth * 0.7,
               height: p1.maxHeight * 0.06,
               decoration: BoxDecoration(boxShadow: [
-                BoxShadow(color: hitam.withOpacity(0.2), offset: Offset(3, 3))
+                BoxShadow(color: hitam.withOpacity(0.2), offset: const Offset(3, 3))
               ], color: birumuda, borderRadius: BorderRadius.circular(15)),
               child: Row(
                 children: [

@@ -1,6 +1,8 @@
 part of 'pages.dart';
 
 class NikValid extends StatefulWidget {
+  const NikValid({super.key});
+
   @override
   _NikValidState createState() => _NikValidState();
 }

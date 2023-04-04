@@ -13,7 +13,7 @@ class HalamanDetailKoordinator extends StatefulWidget {
   String kabupaten;
 
   HalamanDetailKoordinator(
-      {this.koordinator = 'Koordinator 1',
+      {super.key, this.koordinator = 'Koordinator 1',
       this.noktp = '12345678',
       this.email = 'email23@gmail.com',
       this.notelepon = '081241782869',

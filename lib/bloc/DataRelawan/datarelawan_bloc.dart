@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:pilkada/models/datadaerah.dart';
 import 'package:pilkada/models/datagruprelawan.dart';
 import 'package:pilkada/models/datarelawan.dart';
 import 'package:pilkada/services/AuthService.dart';

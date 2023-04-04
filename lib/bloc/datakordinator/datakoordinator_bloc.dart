@@ -78,7 +78,7 @@ class DatakoordinatorBloc
       }
 
       if (event is DataKoordinatorConnectKomunitas) {
-        var data = await auth!.getdatakordinatorkomunitas();
+        var data = await auth!.getdatakordinatorkomunitas(page: event.page);
         emit(DataKoordinatorKomunitas(data: data));
       }
     });

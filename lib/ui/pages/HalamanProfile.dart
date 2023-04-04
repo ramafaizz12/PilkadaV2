@@ -8,7 +8,7 @@ class HalamanProfile extends StatefulWidget {
   String namapartai;
 
   HalamanProfile(
-      {this.nama = '',
+      {super.key, this.nama = '',
       this.nik = '',
       this.alamat = '',
       this.namadaerah = '',
@@ -57,7 +57,7 @@ class _HalamanProfileState extends State<HalamanProfile> {
                                 radius: 50,
                                 backgroundImage: NetworkImage(
                                     'https://web-sisfopilkada.taekwondosulsel.info/public/storage/${state.data!.foto}'))
-                            : Text("");
+                            : const Text("");
                       },
                     ),
                   ),
@@ -118,7 +118,7 @@ class _HalamanProfileState extends State<HalamanProfile> {
                                   ),
                                 ],
                               )
-                            : SpinKitDualRing(
+                            : const SpinKitDualRing(
                                 color: birumuda,
                               );
                       },

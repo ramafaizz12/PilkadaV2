@@ -15,7 +15,7 @@ class HalamanDetailDPT extends StatefulWidget {
   String kecamatan;
 
   HalamanDetailDPT(
-      {this.namadpt = 'Relawan 001',
+      {super.key, this.namadpt = 'Relawan 001',
       this.kabupaten = 'Makassar',
       this.agama = '',
       this.email = '',

@@ -8,7 +8,7 @@ class HalamanDataTps extends StatefulWidget {
   String keterangan;
 
   HalamanDataTps(
-      {this.tps = '001',
+      {super.key, this.tps = '001',
       this.provinsi = 'Sulawesi Selatan',
       this.kabupaten = 'Makassar',
       this.kecamatan = 'Tamalanrea',
@@ -143,7 +143,7 @@ class _HalamanDataTpsState extends State<HalamanDataTps> {
                                         mainAxisSpacing: p1.maxHeight * 0.02,
                                         crossAxisSpacing: 5),
                                 itemBuilder: (context, index) => Animate(
-                                  effects: [
+                                  effects: const [
                                     FadeEffect(duration: Duration(seconds: 2)),
                                     ScaleEffect(duration: Duration(seconds: 1))
                                   ],
@@ -164,7 +164,7 @@ class _HalamanDataTpsState extends State<HalamanDataTps> {
                                     child: LayoutBuilder(
                                       builder: (p0, p2) => Row(
                                         children: [
-                                          Container(
+                                          SizedBox(
                                               width: p2.maxWidth * 0.4,
                                               height: p2.maxHeight,
                                               child: Image.network(
@@ -189,12 +189,12 @@ class _HalamanDataTpsState extends State<HalamanDataTps> {
                                                       width: p2.maxWidth * 0.05,
                                                       height:
                                                           p2.maxHeight * 0.05,
-                                                      decoration: BoxDecoration(
+                                                      decoration: const BoxDecoration(
                                                           shape:
                                                               BoxShape.circle,
                                                           color: pinkabu)),
                                                   Text(
-                                                      "${state.provinsi![index]}",
+                                                      state.provinsi![index],
                                                       style:
                                                           textpoppin.copyWith(
                                                               color: hitam,
@@ -208,7 +208,7 @@ class _HalamanDataTpsState extends State<HalamanDataTps> {
                                                             .spaceEvenly,
                                                     children: [
                                                       Text(
-                                                          "${state.kabupaten![index]}",
+                                                          state.kabupaten![index],
                                                           style: textpoppin.copyWith(
                                                               color: hitam,
                                                               fontSize:
@@ -218,7 +218,7 @@ class _HalamanDataTpsState extends State<HalamanDataTps> {
                                                           width: p2.maxWidth *
                                                               0.05),
                                                       Text(
-                                                          "${state.kecamatan![index]}",
+                                                          state.kecamatan![index],
                                                           overflow: TextOverflow
                                                               .ellipsis,
                                                           style: textpoppin
@@ -267,7 +267,7 @@ class _HalamanDataTpsState extends State<HalamanDataTps> {
                                 style: textpoppin.copyWith(
                                     fontSize: p1.maxWidth * 0.04),
                               ))
-                        : SpinKitDualRing(
+                        : const SpinKitDualRing(
                             color: birumuda,
                           );
                   },
@@ -278,7 +278,7 @@ class _HalamanDataTpsState extends State<HalamanDataTps> {
                 width: p1.maxWidth * 0.7,
                 height: p1.maxHeight * 0.06,
                 decoration: BoxDecoration(boxShadow: [
-                  BoxShadow(color: hitam.withOpacity(0.2), offset: Offset(3, 3))
+                  BoxShadow(color: hitam.withOpacity(0.2), offset: const Offset(3, 3))
                 ], color: birumuda, borderRadius: BorderRadius.circular(15)),
                 child: Row(
                   children: [

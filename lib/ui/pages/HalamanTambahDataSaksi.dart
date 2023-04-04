@@ -1,6 +1,8 @@
 part of 'pages.dart';
 
 class HalamanTambahDataSaksi extends StatefulWidget {
+  const HalamanTambahDataSaksi({super.key});
+
   @override
   _HalamanTambahDataSaksiState createState() => _HalamanTambahDataSaksiState();
 }
@@ -250,46 +252,7 @@ class _HalamanTambahDataSaksiState extends State<HalamanTambahDataSaksi> {
                                 ),
                               ],
                             ),
-                            ContainerInput(
-                              lebarfont: p1.maxHeight * 0.02,
-                              width: p1.maxWidth,
-                              height: p1.maxHeight * 0.06,
-                              nama: 'Tps',
-                              tipekeyboard: TextInputType.name,
-                              control: tpscontrol,
-                            ),
-                            ContainerInput(
-                              lebarfont: p1.maxHeight * 0.02,
-                              width: p1.maxWidth,
-                              height: p1.maxHeight * 0.06,
-                              nama: 'Jumlah Suara Sah',
-                              tipekeyboard: TextInputType.name,
-                              control: suarasahcontrol,
-                            ),
-                            ContainerInput(
-                              lebarfont: p1.maxHeight * 0.02,
-                              width: p1.maxWidth,
-                              height: p1.maxHeight * 0.06,
-                              nama: 'Jumlah Suara Tidak Sah',
-                              tipekeyboard: TextInputType.name,
-                              control: suaratidaksahcontrol,
-                            ),
-                            ContainerInput(
-                              lebarfont: p1.maxHeight * 0.02,
-                              width: p1.maxWidth,
-                              height: p1.maxHeight * 0.06,
-                              nama: 'No.Kandidat',
-                              tipekeyboard: TextInputType.name,
-                              control: kandidatcontrol,
-                            ),
-                            ContainerInput(
-                              lebarfont: p1.maxHeight * 0.02,
-                              width: p1.maxWidth,
-                              height: p1.maxHeight * 0.06,
-                              nama: 'Keterangan',
-                              tipekeyboard: TextInputType.name,
-                              control: keterangancontrol,
-                            ),
+                           
                             SizedBox(
                               height: p1.maxHeight * 0.02,
                             ),

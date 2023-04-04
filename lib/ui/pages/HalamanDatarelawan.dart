@@ -6,7 +6,7 @@ class HalamanDataRelawan extends StatefulWidget {
   String gruprelawan;
 
   HalamanDataRelawan(
-      {this.namarelawan = 'Relawan 1',
+      {super.key, this.namarelawan = 'Relawan 1',
       this.gruprelawan = 'Group 1',
       this.gambar = ''});
 
@@ -69,7 +69,7 @@ class _HalamanDataRelawanState extends State<HalamanDataRelawan> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => HalamanTemplateData(
-                                    haldata: HalamanTambahDataRelawan(),
+                                    haldata: const HalamanTambahDataRelawan(),
                                   )));
                     },
                     child: Text(
@@ -221,7 +221,7 @@ class _HalamanDataRelawanState extends State<HalamanDataRelawan> {
                             ),
                           );
                         }
-                        return SpinKitDualRing(
+                        return const SpinKitDualRing(
                           color: colororange,
                         );
                       },
@@ -247,7 +247,7 @@ class _HalamanDataRelawanState extends State<HalamanDataRelawan> {
                           .read<DatarelawanBloc>()
                           .add(DataRelawanConnect(page: '1'));
                     },
-                    child: Text("1"),
+                    child: const Text("1"),
                   ),
                   TextButton(
                     onPressed: () {
@@ -255,7 +255,7 @@ class _HalamanDataRelawanState extends State<HalamanDataRelawan> {
                           .read<DatarelawanBloc>()
                           .add(DataRelawanConnect(page: '2'));
                     },
-                    child: Text("2"),
+                    child: const Text("2"),
                   ),
                   TextButton(
                     onPressed: () {
@@ -263,7 +263,7 @@ class _HalamanDataRelawanState extends State<HalamanDataRelawan> {
                           .read<DatarelawanBloc>()
                           .add(DataRelawanConnect(page: '3'));
                     },
-                    child: Text("3"),
+                    child: const Text("3"),
                   ),
                   TextButton(
                     onPressed: () {
@@ -271,7 +271,7 @@ class _HalamanDataRelawanState extends State<HalamanDataRelawan> {
                           .read<DatarelawanBloc>()
                           .add(DataRelawanConnect(page: '4'));
                     },
-                    child: Text("4"),
+                    child: const Text("4"),
                   ),
                   TextButton(
                     onPressed: () {
@@ -279,7 +279,7 @@ class _HalamanDataRelawanState extends State<HalamanDataRelawan> {
                           .read<DatarelawanBloc>()
                           .add(DataRelawanConnect(page: '4'));
                     },
-                    child: Text(">"),
+                    child: const Text(">"),
                   ),
                 ],
               ),

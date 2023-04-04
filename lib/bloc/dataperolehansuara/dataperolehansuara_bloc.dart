@@ -18,6 +18,7 @@ class DataperolehansuaraBloc
     List<String> listkabupaten = [];
     List<String> listkecamatan = [];
     List<DataPerolehanSuara>? data = [];
+    List<String>? foundsuara = [];
     kedaerahlist() async {
       var dataprovinsi = await auth!.getdataprovinsi();
       var datakabupaten = await auth.getdatakabupaten();
@@ -47,7 +48,7 @@ class DataperolehansuaraBloc
 
     on<DataperolehansuaraEvent>((event, emit) async {
       if (event is DataPerolehanSuaraConnect) {
-        data = await auth!.getdataperolehansuara();
+        data = await auth!.getdataperolehansuara(page: event.page);
         await kedaerahlist();
         emit(DataPerolehanSuaraLoaded(
             data: data,
@@ -67,9 +68,28 @@ class DataperolehansuaraBloc
             district_id: event.district_id,
             tps_id: event.tps_id,
             formulir_c1: event.formulir_c1,
-            saksi_id: event.saksi_id,
             data_kecurangan: event.data_kecurangan);
         emit(DpsUpdate(data: data));
+      }
+
+      if (event is DataPerolehanSuaraCari) {
+        List<String> results = [];
+        if (event.value!.isEmpty) {
+          results = listkecamatan;
+          await kedaerahlist();
+        } else {
+          results = listkecamatan
+              .where(
+                  (e) => e.toLowerCase().contains(event.value!.toLowerCase()))
+              .toList();
+          await kedaerahlist();
+        }
+        foundsuara = results;
+        emit(DataPerolehanSuaraLoaded(
+            data: data,
+            kabupaten: listkabupaten,
+            kecamatan: foundsuara,
+            provinsi: listprovinsi));
       }
     });
   }

@@ -1,41 +1,18 @@
 part of 'pages.dart';
 
 class HalamanCaleg extends StatefulWidget {
+  const HalamanCaleg({super.key});
+
   @override
   State<HalamanCaleg> createState() => _HalamanCalegState();
 }
 
 class _HalamanCalegState extends State<HalamanCaleg> {
-  List<DataKandidat> _allUsers = [];
   int page = 4 + 1;
 
-  List<DataKandidat> _foundUsers = [];
   @override
   initState() {
-    var data = context.read<DatakandidatBloc>().state;
-    if (data is DataKandidatLoaded) {
-      _allUsers = data.data!;
-      _foundUsers = _allUsers;
-    }
-
     super.initState();
-  }
-
-  void _runFilter(String enteredKeyword) {
-    List<DataKandidat> results = [];
-    if (enteredKeyword.isEmpty) {
-      results = _allUsers;
-    } else {
-      results = _allUsers
-          .where((user) => user.nama_kandidat!
-              .toLowerCase()
-              .contains(enteredKeyword.toLowerCase()))
-          .toList();
-    }
-
-    setState(() {
-      _foundUsers = results;
-    });
   }
 
   @override
@@ -91,7 +68,7 @@ class _HalamanCalegState extends State<HalamanCaleg> {
                                       mainAxisSpacing: p1.maxHeight * 0.02,
                                       crossAxisSpacing: 5),
                               itemBuilder: (context, index) => Animate(
-                                effects: [
+                                effects: const [
                                   FadeEffect(duration: Duration(seconds: 2)),
                                   ScaleEffect(duration: Duration(seconds: 1))
                                 ],
@@ -112,7 +89,7 @@ class _HalamanCalegState extends State<HalamanCaleg> {
                                       borderRadius: BorderRadius.circular(15)),
                                   child: Column(
                                     children: [
-                                      Container(
+                                      SizedBox(
                                         width: p1.maxWidth * 0.94,
                                         height: p1.maxHeight * 0.2,
                                         child: Image.network(
@@ -153,7 +130,7 @@ class _HalamanCalegState extends State<HalamanCaleg> {
                               style: textpoppin.copyWith(
                                   fontSize: p1.maxWidth * 0.04),
                             ))
-                      : SpinKitDualRing(
+                      : const SpinKitDualRing(
                           color: birumuda,
                         );
                 },
@@ -164,7 +141,7 @@ class _HalamanCalegState extends State<HalamanCaleg> {
               width: p1.maxWidth * 0.7,
               height: p1.maxHeight * 0.06,
               decoration: BoxDecoration(boxShadow: [
-                BoxShadow(color: hitam.withOpacity(0.2), offset: Offset(3, 3))
+                BoxShadow(color: hitam.withOpacity(0.2), offset: const Offset(3, 3))
               ], color: birumuda, borderRadius: BorderRadius.circular(15)),
               child: Row(
                 children: [
@@ -173,8 +150,8 @@ class _HalamanCalegState extends State<HalamanCaleg> {
                     child: TextButton(
                       onPressed: () {
                         context
-                            .read<DatarelawanBloc>()
-                            .add(DataRelawanConnect(page: '1'));
+                            .read<DatakandidatBloc>()
+                            .add(DataKandidatConnect(page: '1'));
                       },
                       child:
                           Text("1", style: textpoppin.copyWith(color: putih)),
@@ -185,8 +162,8 @@ class _HalamanCalegState extends State<HalamanCaleg> {
                     child: TextButton(
                       onPressed: () {
                         context
-                            .read<DatarelawanBloc>()
-                            .add(DataRelawanConnect(page: '2'));
+                            .read<DatakandidatBloc>()
+                            .add(DataKandidatConnect(page: '2'));
                       },
                       child:
                           Text("2", style: textpoppin.copyWith(color: putih)),
@@ -197,8 +174,8 @@ class _HalamanCalegState extends State<HalamanCaleg> {
                     child: TextButton(
                       onPressed: () {
                         context
-                            .read<DatarelawanBloc>()
-                            .add(DataRelawanConnect(page: '3'));
+                            .read<DatakandidatBloc>()
+                            .add(DataKandidatConnect(page: '3'));
                       },
                       child:
                           Text("3", style: textpoppin.copyWith(color: putih)),
@@ -209,8 +186,8 @@ class _HalamanCalegState extends State<HalamanCaleg> {
                     child: TextButton(
                       onPressed: () {
                         context
-                            .read<DatarelawanBloc>()
-                            .add(DataRelawanConnect(page: '4'));
+                            .read<DatakandidatBloc>()
+                            .add(DataKandidatConnect(page: '4'));
                       },
                       child:
                           Text("4", style: textpoppin.copyWith(color: putih)),
@@ -221,8 +198,8 @@ class _HalamanCalegState extends State<HalamanCaleg> {
                     child: TextButton(
                       onPressed: () {
                         context
-                            .read<DatarelawanBloc>()
-                            .add(DataRelawanConnect(page: page.toString()));
+                            .read<DatakandidatBloc>()
+                            .add(DataKandidatConnect(page: page.toString()));
                       },
                       child:
                           Text(">", style: textpoppin.copyWith(color: putih)),

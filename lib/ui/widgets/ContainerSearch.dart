@@ -7,7 +7,7 @@ class ContainerSearch extends StatefulWidget {
   Function(String)? cari;
 
   ContainerSearch(
-      {this.width = 0.1,
+      {super.key, this.width = 0.1,
       this.height = 0.1,
       this.hinttext = 'Search',
       this.cari});
@@ -33,14 +33,14 @@ class _ContainerSearchState extends State<ContainerSearch> {
             ],
             borderRadius: BorderRadius.circular(10)),
         child: Padding(
-            padding: EdgeInsets.all(8),
+            padding: const EdgeInsets.all(8),
             child: TextField(
               onChanged: widget.cari,
               decoration: InputDecoration(
                   hintText: widget.hinttext,
                   hintStyle: textpoppin,
                   isDense: true,
-                  contentPadding: EdgeInsets.only(top: 5, left: 5),
+                  contentPadding: const EdgeInsets.only(top: 5, left: 5),
                   border: InputBorder.none),
             )));
   }

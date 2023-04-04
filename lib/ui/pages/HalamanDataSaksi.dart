@@ -6,7 +6,7 @@ class HalamanDataSaksitps extends StatefulWidget {
   String tps;
 
   HalamanDataSaksitps(
-      {this.namasaksi = 'Saksi 1', this.tps = 'TPS 1', this.gambar = ''});
+      {super.key, this.namasaksi = 'Saksi 1', this.tps = 'TPS 1', this.gambar = ''});
 
   @override
   State<HalamanDataSaksitps> createState() => _HalamanDataSaksitpsState();
@@ -81,7 +81,7 @@ class _HalamanDataSaksitpsState extends State<HalamanDataSaksitps> {
                                       mainAxisSpacing: p1.maxHeight * 0.02,
                                       crossAxisSpacing: 5),
                               itemBuilder: (context, index) => Animate(
-                                    effects: [
+                                    effects: const [
                                       FadeEffect(
                                           duration: Duration(seconds: 2)),
                                       ScaleEffect(
@@ -143,7 +143,7 @@ class _HalamanDataSaksitpsState extends State<HalamanDataSaksitps> {
                                                         height:
                                                             p2.maxHeight * 0.1,
                                                         decoration:
-                                                            BoxDecoration(
+                                                            const BoxDecoration(
                                                                 shape: BoxShape
                                                                     .circle,
                                                                 color:
@@ -171,7 +171,7 @@ class _HalamanDataSaksitpsState extends State<HalamanDataSaksitps> {
                               style: textpoppin.copyWith(
                                   fontSize: p1.maxWidth * 0.04),
                             ))
-                      : SpinKitDualRing(
+                      : const SpinKitDualRing(
                           color: birumuda,
                         );
                 },
@@ -182,7 +182,7 @@ class _HalamanDataSaksitpsState extends State<HalamanDataSaksitps> {
               width: p1.maxWidth * 0.7,
               height: p1.maxHeight * 0.06,
               decoration: BoxDecoration(boxShadow: [
-                BoxShadow(color: hitam.withOpacity(0.2), offset: Offset(3, 3))
+                BoxShadow(color: hitam.withOpacity(0.2), offset: const Offset(3, 3))
               ], color: birumuda, borderRadius: BorderRadius.circular(15)),
               child: Row(
                 children: [

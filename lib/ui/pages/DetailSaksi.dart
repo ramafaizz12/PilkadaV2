@@ -11,7 +11,7 @@ class HalamanDetailSaksi extends StatefulWidget {
   String? gambar;
   String tps;
   HalamanDetailSaksi(
-      {this.namasaksi = 'Saksi 001',
+      {super.key, this.namasaksi = 'Saksi 001',
       this.alamat = 'Makassar',
       this.email = 'email23@gmail.com',
       this.notelepon = '081241782869',
@@ -136,14 +136,14 @@ class _HalamanDetailSaksiState extends State<HalamanDetailSaksi> {
                             fontWeight: FontWeight.w600),
                       ),
                       Text(
-                        '${widget.kabupaten}',
+                        widget.kabupaten,
                         style: textpoppin.copyWith(
                             fontSize: p1.maxHeight * 0.02,
                             overflow: TextOverflow.ellipsis,
                             fontWeight: FontWeight.w600),
                       ),
                       Text(
-                        "${widget.kecamatan}",
+                        widget.kecamatan,
                         style: textpoppin.copyWith(
                             fontSize: p1.maxHeight * 0.02,
                             overflow: TextOverflow.ellipsis,

@@ -26,6 +26,8 @@ class HalamanDataAdmin extends StatelessWidget {
     'KORKOMUNITAS',
   ];
 
+  HalamanDataAdmin({super.key});
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -62,7 +64,7 @@ class HalamanDataAdmin extends StatelessWidget {
                                         : (index == 3)
                                             ? HalamanTemplateawal(
                                                 nama: 'Data Jumlah DPT',
-                                                halamandata: HalamanJumlahdpt())
+                                                halamandata: const HalamanJumlahdpt())
                                             : (index == 4)
                                                 ? HalamanTemplateawal(
                                                     nama: 'Data Koordinator',
@@ -84,7 +86,7 @@ class HalamanDataAdmin extends StatelessWidget {
                                                                 nama:
                                                                     'Data Caleg',
                                                                 halamandata:
-                                                                    HalamanCaleg())
+                                                                    const HalamanCaleg())
                                                             : (index == 8)
                                                                 ? HalamanTemplateawal(
                                                                     nama:
@@ -97,7 +99,7 @@ class HalamanDataAdmin extends StatelessWidget {
                                                                             'Komunitas Koordinator',
                                                                         halamandata:
                                                                             HalamanKordinatorKomunitas())
-                                                                    : Text(
+                                                                    : const Text(
                                                                         "")));
                   },
                   gambar: gambar[index],

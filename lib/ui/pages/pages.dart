@@ -1,9 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:animated_splash_screen/animated_splash_screen.dart';
-
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:camera/camera.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:email_validator/email_validator.dart';
@@ -27,7 +24,7 @@ import 'package:quickalert/quickalert.dart';
 
 import '../../bloc/DataDashboard/datadashboard_bloc.dart';
 import '../../bloc/DataRelawan/datarelawan_bloc.dart';
-import '../../bloc/DataRelawan/datarelawan_bloc.dart';
+
 import '../../bloc/Datadpt/datadpt_bloc.dart';
 import '../../bloc/Datakandidat/datakandidat_bloc.dart';
 import '../../bloc/Dataprofile/dataprofile_bloc.dart';
@@ -38,17 +35,17 @@ import '../../bloc/datasaksi/datasaksi_bloc.dart';
 
 import '../../bloc/loginandauth/auth_bloc.dart';
 import '../../bloc/loginandauth/login_bloc.dart';
-import '../../models/Datadpt.dart';
+
 import '../../models/Kecamatan.dart';
 import '../../models/Provinsi.dart';
-import '../../models/Tps.dart';
-import '../../models/dataaksesoris.dart';
+
 import '../../models/datadaerah.dart';
 import '../../models/datagruprelawan.dart';
-import '../../models/datakandidat.dart';
+
 import '../../models/datarelawan.dart';
-import '../../models/saksitps.dart';
+
 import '../../services/AuthService.dart';
+
 part 'HalamanLoading.dart';
 part 'loadingpage.dart';
 part 'loginpage.dart';

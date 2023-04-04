@@ -25,6 +25,8 @@ void main() {
 class MyApp extends StatelessWidget {
   Authentication auth = Authentication();
   AuthBloc authbloc = AuthBloc();
+
+  MyApp({super.key});
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -64,11 +66,15 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<DatadashboardBloc>(
           create: (BuildContext context) => DatadashboardBloc(auth: auth),
-        )
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: LoadingPage(),
+        home: (authbloc.state is AuthAuthenticated)
+            ? const Wrapper()
+            : (authbloc.state is AuthUthenticated)
+                ? const LoadingPage()
+                : const Wrapper(),
       ),
     );
   }

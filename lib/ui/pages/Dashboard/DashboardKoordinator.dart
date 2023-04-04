@@ -1,6 +1,8 @@
 part of '../pages.dart';
 
 class Dashboarkoordinator extends StatelessWidget {
+  const Dashboarkoordinator({super.key});
+
   @override
   Widget build(BuildContext context) {
     return
@@ -89,7 +91,7 @@ class Dashboarkoordinator extends StatelessWidget {
                                 ])),
                       ],
                     ))
-            : Text("");
+            : const Text("");
       },
     );
   }

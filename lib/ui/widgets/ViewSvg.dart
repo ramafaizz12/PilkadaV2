@@ -8,7 +8,7 @@ class ViewSvg extends StatelessWidget {
   final String? gambar;
   final int? index;
 
-  ViewSvg({this.width, this.height, this.katabody, this.gambar, this.index});
+  const ViewSvg({super.key, this.width, this.height, this.katabody, this.gambar, this.index});
   @override
   Widget build(BuildContext context) {
     return Column(

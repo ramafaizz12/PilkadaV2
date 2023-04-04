@@ -71,7 +71,7 @@ class _HalamanSettingsState extends State<HalamanSettings> {
                                 ],
                                 borderRadius: BorderRadius.circular(10)),
                             child: Padding(
-                              padding: EdgeInsets.all(8),
+                              padding: const EdgeInsets.all(8),
                               child: Text(
                                 "Lihat Profil",
                                 style: textpoppin,
@@ -126,7 +126,7 @@ class _HalamanSettingsState extends State<HalamanSettings> {
                                                 color: hitam.withOpacity(0.2),
                                                 offset: const Offset(3, 3))
                                           ],
-                                          color: colorbiru,
+                                          color: birumuda,
                                           border: Border.all(
                                               color: colorbiru, width: 1.0)),
                                       child: TextButton(
@@ -171,7 +171,7 @@ class _HalamanSettingsState extends State<HalamanSettings> {
                                 ],
                                 borderRadius: BorderRadius.circular(10)),
                             child: Padding(
-                              padding: EdgeInsets.all(8),
+                              padding: const EdgeInsets.all(8),
                               child: Text(
                                 "Keluar",
                                 style: textpoppin,

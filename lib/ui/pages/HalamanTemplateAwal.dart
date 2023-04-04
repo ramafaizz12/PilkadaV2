@@ -3,7 +3,7 @@ part of 'pages.dart';
 class HalamanTemplateawal extends StatelessWidget {
   dynamic halamandata;
   String nama;
-  HalamanTemplateawal({this.halamandata, this.nama = ''});
+  HalamanTemplateawal({super.key, this.halamandata, this.nama = ''});
 
   @override
   Widget build(BuildContext context) {

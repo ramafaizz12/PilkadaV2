@@ -38,4 +38,8 @@ class TambahDataKoordinator extends DatakoordinatorEvent {
       this.scan_ktp});
 }
 
-class DataKoordinatorConnectKomunitas extends DatakoordinatorEvent {}
+class DataKoordinatorConnectKomunitas extends DatakoordinatorEvent {
+  String page;
+
+  DataKoordinatorConnectKomunitas({this.page = ''});
+}

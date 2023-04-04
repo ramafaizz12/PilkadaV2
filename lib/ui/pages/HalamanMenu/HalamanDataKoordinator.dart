@@ -22,6 +22,8 @@ class HalamanDataKoordinator extends StatelessWidget {
     'HPS',
   ];
 
+  HalamanDataKoordinator({super.key});
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -53,7 +55,7 @@ class HalamanDataKoordinator extends StatelessWidget {
                                     : (index == 2)
                                         ? HalamanTemplateawal(
                                             nama: 'Data Jumlah DPT',
-                                            halamandata: HalamanJumlahdpt())
+                                            halamandata: const HalamanJumlahdpt())
                                         : (index == 3)
                                             ? HalamanTemplateawal(
                                                 nama: 'Data Koordinator',
@@ -74,14 +76,14 @@ class HalamanDataKoordinator extends StatelessWidget {
                                                         ? HalamanTemplateawal(
                                                             nama: 'Data Caleg',
                                                             halamandata:
-                                                                HalamanCaleg())
+                                                                const HalamanCaleg())
                                                         : (index == 7)
                                                             ? HalamanTemplateawal(
                                                                 nama:
                                                                     'Hasil Perolehan Suara',
                                                                 halamandata:
                                                                     HalamanPerolehanSuara())
-                                                            : Text("")));
+                                                            : const Text("")));
                   },
                   gambar: gambar[index],
                   nama: nama[index],

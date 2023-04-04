@@ -3,7 +3,17 @@ part of 'dataperolehansuara_bloc.dart';
 @immutable
 abstract class DataperolehansuaraEvent {}
 
-class DataPerolehanSuaraConnect extends DataperolehansuaraEvent {}
+class DataPerolehanSuaraConnect extends DataperolehansuaraEvent {
+  String page;
+
+  DataPerolehanSuaraConnect({this.page = ''});
+}
+
+class DataPerolehanSuaraCari extends DataperolehansuaraEvent {
+  String? value;
+
+  DataPerolehanSuaraCari({this.value});
+}
 
 class DataPerolehanSuaraCreate extends DataperolehansuaraEvent {
   String? jml_suara_sah;
@@ -15,7 +25,7 @@ class DataPerolehanSuaraCreate extends DataperolehansuaraEvent {
   String? district_id;
   String? tps_id;
   File? formulir_c1;
-  String? saksi_id;
+
   String? data_kecurangan;
   DataPerolehanSuaraCreate(
       {this.jml_suara_sah,
@@ -27,6 +37,5 @@ class DataPerolehanSuaraCreate extends DataperolehansuaraEvent {
       this.district_id,
       this.tps_id,
       this.formulir_c1,
-      this.saksi_id,
       this.data_kecurangan});
 }

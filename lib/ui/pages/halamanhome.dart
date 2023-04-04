@@ -4,7 +4,7 @@ class HalamanHome extends StatelessWidget {
   dynamic haldata;
   dynamic dashboard;
 
-  HalamanHome({this.haldata, this.dashboard});
+  HalamanHome({super.key, this.haldata, this.dashboard});
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -17,7 +17,7 @@ class HalamanHome extends StatelessWidget {
                 border: Border.all(color: putih, width: 4.0)),
             width: p1.maxWidth * 0.16,
             height: p1.maxHeight * 0.16,
-            child: CircleAvatar(
+            child: const CircleAvatar(
                 radius: 50, backgroundImage: AssetImage('assets/avatar.png')),
           ),
           BlocBuilder<DataprofileBloc, DataprofileState>(
@@ -26,10 +26,10 @@ class HalamanHome extends StatelessWidget {
                 return Text("Halo, Nama ${state.data!.role}",
                     style: textpoppin.copyWith(fontWeight: FontWeight.w600));
               }
-              return Text("");
+              return const Text("");
             },
           ),
-          Text("Senin, 13 Maret 2023", style: textpoppin),
+          Text(DateTime.now().day.toString(), style: textpoppin),
           SizedBox(height: p1.maxHeight * 0.02),
           ContainerSearch(width: p1.maxWidth, height: p1.maxHeight * 0.05),
           SizedBox(

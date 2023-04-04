@@ -6,7 +6,7 @@ class HalamanPerolehanSuara extends StatefulWidget {
   String email;
 
   HalamanPerolehanSuara(
-      {this.namagruprelawan = 'Group 1',
+      {super.key, this.namagruprelawan = 'Group 1',
       this.alamat = 'Makassar',
       this.email = 'email23@gmail.com'});
 
@@ -32,13 +32,12 @@ class _HalamanPerolehanSuaraState extends State<HalamanPerolehanSuara> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               ContainerSearch(
-                width: p1.maxWidth,
-                height: p1.maxHeight * 0.07,
-                hinttext: 'Cari Data TPS',
-                cari: (value) => context
-                    .read<DatarelawanBloc>()
-                    .add(DataGrupRelawanSearch(value: value)),
-              ),
+                  width: p1.maxWidth,
+                  height: p1.maxHeight * 0.07,
+                  hinttext: 'Cari Data Kecamatan',
+                  cari: (value) => context
+                      .read<DataperolehansuaraBloc>()
+                      .add(DataPerolehanSuaraCari(value: value))),
             ],
           ),
           SizedBox(height: p1.maxHeight * 0.04),
@@ -49,10 +48,10 @@ class _HalamanPerolehanSuaraState extends State<HalamanPerolehanSuara> {
                   BlocBuilder<DataperolehansuaraBloc, DataperolehansuaraState>(
                 builder: (context, state) {
                   return state is DataPerolehanSuaraLoaded
-                      ? state.data!.isNotEmpty
+                      ? state.kecamatan!.isNotEmpty
                           ? GridView.builder(
                               scrollDirection: Axis.vertical,
-                              itemCount: state.data!.length,
+                              itemCount: state.kecamatan!.length,
                               gridDelegate:
                                   SliverGridDelegateWithFixedCrossAxisCount(
                                       childAspectRatio: (1 / .4),
@@ -60,7 +59,7 @@ class _HalamanPerolehanSuaraState extends State<HalamanPerolehanSuara> {
                                       mainAxisSpacing: p1.maxHeight * 0.02,
                                       crossAxisSpacing: 5),
                               itemBuilder: (context, index) => Animate(
-                                effects: [
+                                effects: const [
                                   FadeEffect(duration: Duration(seconds: 2)),
                                   ScaleEffect(duration: Duration(seconds: 1))
                                 ],
@@ -103,7 +102,7 @@ class _HalamanPerolehanSuaraState extends State<HalamanPerolehanSuara> {
                                               Container(
                                                   width: p2.maxWidth * 0.05,
                                                   height: p2.maxHeight * 0.05,
-                                                  decoration: BoxDecoration(
+                                                  decoration: const BoxDecoration(
                                                       shape: BoxShape.circle,
                                                       color: abuabu)),
                                               Text(
@@ -121,7 +120,7 @@ class _HalamanPerolehanSuaraState extends State<HalamanPerolehanSuara> {
                                                         color: hitam,
                                                         fontSize: p2.maxHeight *
                                                             0.07)),
-                                                SizedBox(width: 12),
+                                                const SizedBox(width: 12),
                                                 Text(
                                                     "JUMLAH SUARA TIDAK SAH ${state.data![index].jml_suara_tidaksah}",
                                                     style: textpoppin.copyWith(
@@ -160,7 +159,7 @@ class _HalamanPerolehanSuaraState extends State<HalamanPerolehanSuara> {
                               style: textpoppin.copyWith(
                                   fontSize: p1.maxWidth * 0.04),
                             ))
-                      : SpinKitDualRing(
+                      : const SpinKitDualRing(
                           color: birumuda,
                         );
                 },
@@ -171,7 +170,7 @@ class _HalamanPerolehanSuaraState extends State<HalamanPerolehanSuara> {
               width: p1.maxWidth * 0.7,
               height: p1.maxHeight * 0.06,
               decoration: BoxDecoration(boxShadow: [
-                BoxShadow(color: hitam.withOpacity(0.2), offset: Offset(3, 3))
+                BoxShadow(color: hitam.withOpacity(0.2), offset: const Offset(3, 3))
               ], color: birumuda, borderRadius: BorderRadius.circular(15)),
               child: Row(
                 children: [

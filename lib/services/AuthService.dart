@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
@@ -57,10 +56,6 @@ class Authentication {
 
     Iterable data = (jsonDecode(user.body) as Map<String, dynamic>)['data'];
 
-    //print(map1.update(1101, (value) => 'Kabuoaten konkon'));
-    //print(map1);
-    //var item = data.firstWhere((e) => e['id'] == 1101);
-
     List<DataKabupaten> alluser =
         data.map((e) => DataKabupaten.fromJson(e)).toList();
 
@@ -74,10 +69,6 @@ class Authentication {
     );
 
     Iterable data = (jsonDecode(user.body) as Map<String, dynamic>)['data'];
-
-    //print(map1.update(1101, (value) => 'Kabuoaten konkon'));
-    //print(map1);
-    //var item = data.firstWhere((e) => e['id'] == 1101);
 
     List<DataProvinsi> alluser =
         data.map((e) => DataProvinsi.fromJson(e)).toList();
@@ -117,11 +108,7 @@ class Authentication {
         headers: {'Authorization': token.toString()});
     Iterable data =
         (jsonDecode(user.body) as Map<String, dynamic>)['data']['data'];
-    //var map1 = Map.fromIterable(data,
-    //key: (e) => e['regency_id'], value: (e) => e['rw']);
-    // map1.update('7371', (value) => 'Kabuoaten konkon');
-    // var list = map1 as Iterable;
-    // print(list);
+
     List<DataRelawan> alluser =
         data.map((e) => DataRelawan.fromJson(e)).toList();
 
@@ -148,8 +135,7 @@ class Authentication {
         Uri.parse(
             'https://web-sisfopilkada.taekwondosulsel.info/api/index/gruprelawan'),
         headers: {'Authorization': token.toString()});
-    Iterable data =
-        (jsonDecode(user.body) as Map<String, dynamic>)['data']['data'];
+    Iterable data = (jsonDecode(user.body) as Map<String, dynamic>)['data'];
 
     List<DataGruprelawan> alluser =
         data.map((e) => DataGruprelawan.fromJson(e)).toList();
@@ -437,11 +423,11 @@ class Authentication {
     return alluser;
   }
 
-  Future<List<Datadpt>?> getdatadpt() async {
+  Future<List<Datadpt>?> getdatadpt({String page = ''}) async {
     var token = await gettoken();
     var user = await http.get(
         Uri.parse(
-            'https://web-sisfopilkada.taekwondosulsel.info/api/index/dpt'),
+            'https://web-sisfopilkada.taekwondosulsel.info/api/index/dpt?page=$page'),
         headers: {'Authorization': token.toString()});
     Iterable data = (jsonDecode(user.body) as Map<String, dynamic>)['data'];
 
@@ -450,11 +436,11 @@ class Authentication {
     return alluser;
   }
 
-  Future<List<DataKandidat>?> getdatakandidat() async {
+  Future<List<DataKandidat>?> getdatakandidat({String page = ''}) async {
     var token = await gettoken();
     var user = await http.get(
         Uri.parse(
-            'https://web-sisfopilkada.taekwondosulsel.info/api/index/kandidat'),
+            'https://web-sisfopilkada.taekwondosulsel.info/api/index/kandidat?page=$page'),
         headers: {'Authorization': token.toString()});
     Iterable data =
         (jsonDecode(user.body) as Map<String, dynamic>)['data']['data'];
@@ -596,14 +582,14 @@ class Authentication {
     return databaru;
   }
 
-  Future<List<String>> getkabupatenlist({String provinsi = '11'}) async {
+  Future<List<String>> getkabupatenlist({String provinsi = '73'}) async {
     List<String> itemkabupaten;
     var dataprovinsi = await getdataprovinsi();
     var datakabupaten = await getdatakabupaten();
     var item =
         dataprovinsi!.firstWhere((e) => e.name.toString() == provinsi).id;
     var databaru = datakabupaten!
-        .where((ite) => ite.id.toString().contains(item.toString()))
+        .where((ite) => ite.id.toString().startsWith(item.toString()))
         .toList();
 
     var data = databaru.map((e) => e.name.toString()).toList();
@@ -628,7 +614,7 @@ class Authentication {
     var item =
         datakabupaten!.firstWhere((e) => e.name.toString() == provinsi).id;
     var databaru = datakecamatan!
-        .where((ite) => ite.id.toString().contains(item.toString()))
+        .where((ite) => ite.id.toString().startsWith(item.toString()))
         .toList();
 
     var data = databaru.map((e) => e.name.toString()).toList();
@@ -636,11 +622,12 @@ class Authentication {
     return itemkecamatan;
   }
 
-  Future<List<DataPerolehanSuara>?> getdataperolehansuara() async {
+  Future<List<DataPerolehanSuara>?> getdataperolehansuara(
+      {String page = ''}) async {
     var token = await gettoken();
     var user = await http.get(
         Uri.parse(
-            'https://web-sisfopilkada.taekwondosulsel.info/api/index/realcoun'),
+            'https://web-sisfopilkada.taekwondosulsel.info/api/index/realcoun?page=$page'),
         headers: {'Authorization': token.toString()});
     Iterable data =
         (jsonDecode(user.body) as Map<String, dynamic>)['data']['data'];
@@ -651,13 +638,15 @@ class Authentication {
     return alluser;
   }
 
-  Future<List<DataKordinatorKomunitas>?> getdatakordinatorkomunitas() async {
+  Future<List<DataKordinatorKomunitas>?> getdatakordinatorkomunitas(
+      {String page = ''}) async {
     var token = await gettoken();
     var user = await http.get(
         Uri.parse(
-            'https://web-sisfopilkada.taekwondosulsel.info/api/index/komunitas'),
+            'https://web-sisfopilkada.taekwondosulsel.info/api/index/komunitas?page=$page'),
         headers: {'Authorization': token.toString()});
-    Iterable data = (jsonDecode(user.body) as Map<String, dynamic>)['data'];
+    Iterable data =
+        (jsonDecode(user.body) as Map<String, dynamic>)['data']['data'];
 
     List<DataKordinatorKomunitas> alluser =
         data.map((e) => DataKordinatorKomunitas.fromJson(e)).toList();
@@ -675,7 +664,6 @@ class Authentication {
     String? district_id,
     String? tps_id,
     File? formulir_c1,
-    String? saksi_id,
     String? data_kecurangan,
   }) async {
     var token = await gettoken();
@@ -685,7 +673,7 @@ class Authentication {
       'Accept': 'application/json',
     };
     dio.options.baseUrl =
-        'https://web-sisfopilkada.taekwondosulsel.info/api/store/realcoun';
+        'https://web-sisfopilkada.taekwondosulsel.info/api/realcoun/store';
 
     var formdata = FormData.fromMap({
       'jml_suara_sah': jml_suara_sah,
@@ -696,7 +684,6 @@ class Authentication {
       'regency_id': regency_id,
       'district_id': district_id,
       'tps_id': tps_id,
-      'saksi_id': saksi_id,
       'data_kecurangan': data_kecurangan,
       'formulir_c1': formulir_c1
     });

@@ -1,6 +1,8 @@
 part of 'pages.dart';
 
 class HalamanJumlahdpt extends StatefulWidget {
+  const HalamanJumlahdpt({super.key});
+
   @override
   State<HalamanJumlahdpt> createState() => _HalamanJumlahdptState();
 }
@@ -133,7 +135,7 @@ class _HalamanJumlahdptState extends State<HalamanJumlahdpt> {
                                       mainAxisSpacing: p1.maxHeight * 0.02,
                                       crossAxisSpacing: 5),
                               itemBuilder: (context, index) => Animate(
-                                    effects: [
+                                    effects: const [
                                       FadeEffect(
                                           duration: Duration(seconds: 2)),
                                       ScaleEffect(
@@ -151,7 +153,7 @@ class _HalamanJumlahdptState extends State<HalamanJumlahdpt> {
                                                           namadpt:
                                                               '${state.data![index].nama}',
                                                           kabupaten:
-                                                              '${state.datakabupaten![index]}',
+                                                              state.datakabupaten![index],
                                                           agama:
                                                               '${state.data![index].agama}',
                                                           email:
@@ -159,7 +161,7 @@ class _HalamanJumlahdptState extends State<HalamanJumlahdpt> {
                                                           jkl:
                                                               '${state.data![index].jkl}',
                                                           kecamatan:
-                                                              '${state.datakecamatan![index]}',
+                                                              state.datakecamatan![index],
                                                           tanggallahir:
                                                               '${state.data![index].tanggal_lahir}',
                                                           tempatlahir:
@@ -169,7 +171,7 @@ class _HalamanJumlahdptState extends State<HalamanJumlahdpt> {
                                                           nohp:
                                                               '${state.data![index].no_hp}',
                                                           provinsi:
-                                                              '${state.dataprovinsi![index]}',
+                                                              state.dataprovinsi![index],
                                                           gambar:
                                                               '${state.data![index].foto}'),
                                                     )));
@@ -238,7 +240,7 @@ class _HalamanJumlahdptState extends State<HalamanJumlahdpt> {
                               style: textpoppin.copyWith(
                                   fontSize: p1.maxWidth * 0.04),
                             ))
-                      : SpinKitDualRing(
+                      : const SpinKitDualRing(
                           color: birumuda,
                         );
                 },

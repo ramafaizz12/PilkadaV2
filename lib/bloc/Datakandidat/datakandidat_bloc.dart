@@ -16,7 +16,7 @@ class DatakandidatBloc extends Bloc<DatakandidatEvent, DatakandidatState> {
     List<DataKandidat>? foundkandidat = [];
     on<DatakandidatEvent>((event, emit) async {
       if (event is DataKandidatConnect) {
-        data = await auth!.getdatakandidat();
+        data = await auth!.getdatakandidat(page: event.page);
         foundkandidat = data;
         emit(DataKandidatLoaded(data: data));
       }

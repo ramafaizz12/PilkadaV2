@@ -7,7 +7,7 @@ class ContainerDatabaru extends StatelessWidget {
   final double? height;
   final VoidCallback fungsi;
 
-  const ContainerDatabaru({
+  const ContainerDatabaru({super.key, 
     required this.height,
     required this.width,
     required this.nama,
@@ -27,7 +27,7 @@ class ContainerDatabaru extends StatelessWidget {
               width: p1.maxWidth * 0.7,
               height: p1.maxHeight * 0.7,
               decoration:
-                  BoxDecoration(color: birumuda, shape: BoxShape.circle),
+                  const BoxDecoration(color: birumuda, shape: BoxShape.circle),
               child: SvgPicture.asset(
                 gambar,
                 fit: BoxFit.cover,

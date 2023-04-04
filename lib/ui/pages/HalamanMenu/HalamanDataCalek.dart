@@ -16,6 +16,8 @@ class HalamanDataCalek extends StatelessWidget {
     'CALEG',
   ];
 
+  HalamanDataCalek({super.key});
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -55,8 +57,8 @@ class HalamanDataCalek extends StatelessWidget {
                                             : (index == 4)
                                                 ? HalamanTemplateawal(
                                                     nama: 'Data Caleg',
-                                                    halamandata: HalamanCaleg())
-                                                : Text("")));
+                                                    halamandata: const HalamanCaleg())
+                                                : const Text("")));
                   },
                   gambar: gambar[index],
                   nama: nama[index],

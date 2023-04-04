@@ -4,7 +4,7 @@ class HomePage extends StatefulWidget {
   dynamic haldata;
   dynamic dashboard;
 
-  HomePage({this.haldata, this.dashboard});
+  HomePage({super.key, this.haldata, this.dashboard});
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -21,10 +21,10 @@ class _HomePageState extends State<HomePage> {
         resizeToAvoidBottomInset: false,
         backgroundColor: pinkabu,
         body: Animate(
-          effects: [FadeEffect(duration: Duration(seconds: 2))],
+          effects: const [FadeEffect(duration: Duration(seconds: 2))],
           child: Stack(
             children: [
-              Container(
+              SizedBox(
                   width: p1.maxWidth,
                   child: Image.asset(
                     'assets/backgroundhome.png',
@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
                   endTime: endTime,
                   widgetBuilder: (context, time) {
                     if (time == null) {
-                      return Text('Game over');
+                      return const Text('Game over');
                     }
                     return Container(
                         width: p1.maxWidth,
@@ -91,7 +91,7 @@ class _HomePageState extends State<HomePage> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => HalamanSettings(),
+                                builder: (context) => const HalamanSettings(),
                               ));
                         },
                         child: const Icon(

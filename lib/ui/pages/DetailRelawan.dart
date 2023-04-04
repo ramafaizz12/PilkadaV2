@@ -13,7 +13,7 @@ class HalamanDetailRelawan extends StatefulWidget {
   String kabupaten;
   String? gambar;
 
-  HalamanDetailRelawan({
+  HalamanDetailRelawan({super.key, 
     this.relawan = 'Relawan 001',
     this.noktp = '12345678',
     this.notelepon = '081241782869',

@@ -1,6 +1,8 @@
 part of 'pages.dart';
 
 class HalamanTambahSaksiNew extends StatefulWidget {
+  const HalamanTambahSaksiNew({super.key});
+
   @override
   State<HalamanTambahSaksiNew> createState() => _HalamanTambahSaksiNewState();
 }
@@ -20,7 +22,8 @@ class _HalamanTambahSaksiNewState extends State<HalamanTambahSaksiNew> {
   String? selectedprovinsi;
 
   Future pickfoto() async {
-    final myfile = await ImagePicker().pickImage(source: ImageSource.gallery);
+    final myfile = await ImagePicker()
+        .pickImage(source: ImageSource.gallery, imageQuality: 1);
     setState(() {
       _filefoto = File(myfile!.path);
     });
@@ -106,7 +109,7 @@ class _HalamanTambahSaksiNewState extends State<HalamanTambahSaksiNew> {
               }
             }
 
-            return SizedBox();
+            return const SizedBox();
           },
         ),
         SingleChildScrollView(
@@ -124,7 +127,7 @@ class _HalamanTambahSaksiNewState extends State<HalamanTambahSaksiNew> {
                       child: Container(
                           width: p1.maxWidth * 0.25,
                           height: p1.maxHeight * 0.25,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               shape: BoxShape.circle, color: putih),
                           child: LayoutBuilder(
                             builder: (p0, p2) => (_filefoto != null)
@@ -486,7 +489,7 @@ class _HalamanTambahSaksiNewState extends State<HalamanTambahSaksiNew> {
                       )),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
             ],
           ),
         ),

@@ -44,7 +44,7 @@ class DatadptBloc extends Bloc<DatadptEvent, DatadptState> {
 
     on<DatadptEvent>((event, emit) async {
       if (event is Datadptconnect) {
-        data = await auth!.getdatadpt();
+        data = await auth!.getdatadpt(page: event.page);
         await kedaerahlist();
         foundusers = data;
         emit(DatadptLoaded(

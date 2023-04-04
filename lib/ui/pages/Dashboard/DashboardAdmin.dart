@@ -105,7 +105,7 @@ class DashboardAdmin extends StatelessWidget {
                                 ])),
                       ],
                     ))
-            : Text("");
+            : const Text("");
       },
     );
   }

@@ -1,6 +1,8 @@
 part of 'pages.dart';
 
 class Role extends StatelessWidget {
+  const Role({super.key});
+
   @override
   Widget build(BuildContext context) {
     context.read<AuthBloc>();
@@ -11,17 +13,17 @@ class Role extends StatelessWidget {
           if (state.data!.role == 'admin') {
             context.read<DatadashboardBloc>().add(DatadashboardConnectAdmin());
             return HomePage(
-                haldata: HalamanDataAdmin(), dashboard: DashboardAdmin());
+                haldata: HalamanDataAdmin(), dashboard: const DashboardAdmin());
           }
           if (state.data!.role == 'saksi') {
             context.read<DatadashboardBloc>().add(DatadashboardConnectSaksi());
             return HomePage(
-                haldata: HalamanDataSaksi(), dashboard: DashboardSaksi());
+                haldata: HalamanDataSaksi(), dashboard: const DashboardSaksi());
           }
           if (state.data!.role == 'calek') {
             context.read<DatadashboardBloc>().add(DatadashboardConnectCalek());
             return HomePage(
-                haldata: HalamanDataCalek(), dashboard: DashBoardcalek());
+                haldata: HalamanDataCalek(), dashboard: const DashBoardcalek());
           }
           if (state.data!.role == 'kordinator') {
             context
@@ -29,19 +31,20 @@ class Role extends StatelessWidget {
                 .add(DatadashboardConnectKordinator());
             return HomePage(
                 haldata: HalamanDataKoordinator(),
-                dashboard: Dashboarkoordinator());
+                dashboard: const Dashboarkoordinator());
           }
           if (state.data!.role == 'relawan') {
             context
                 .read<DatadashboardBloc>()
                 .add(DatadashboardConnectRelawan());
             return HomePage(
-                haldata: HalamanDataRelawann(), dashboard: DashboardRelawan());
+                haldata: HalamanDataRelawann(),
+                dashboard: const DashboardRelawan());
           }
           if (state.data!.role == 'cabup') {
             context.read<DatadashboardBloc>().add(DatadashboardConnectCalek());
             return HomePage(
-                haldata: HalamanDataCalek(), dashboard: DashBoardcalek());
+                haldata: HalamanDataCalek(), dashboard: const DashBoardcalek());
           }
         }
         return const HalamanLoading();

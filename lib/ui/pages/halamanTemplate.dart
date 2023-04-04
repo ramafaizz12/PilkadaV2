@@ -5,7 +5,7 @@ class HalamanTemplate extends StatelessWidget {
   final HalamanProfile? halprofile;
   final HalamanDataAdmin? haldata;
 
-  const HalamanTemplate({
+  const HalamanTemplate({super.key, 
     this.halprofile,
     this.haltambahdata,
     this.haldata,

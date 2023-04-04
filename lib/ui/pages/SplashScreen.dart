@@ -1,6 +1,8 @@
 part of 'pages.dart';
 
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
@@ -18,6 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
     pagecontrol = PageController(initialPage: bottomindex!);
   }
 
+  @override
   Widget build(BuildContext context) {
     context.read<AuthBloc>();
     return Scaffold(
@@ -88,15 +91,21 @@ class _SplashScreenState extends State<SplashScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                (bottomindex == 0) ? Containerkecil() : ContainerkecilOff(),
-                SizedBox(
+                (bottomindex == 0)
+                    ? const Containerkecil()
+                    : const ContainerkecilOff(),
+                const SizedBox(
                   width: 5,
                 ),
-                (bottomindex == 1) ? Containerkecil() : ContainerkecilOff(),
-                SizedBox(
+                (bottomindex == 1)
+                    ? const Containerkecil()
+                    : const ContainerkecilOff(),
+                const SizedBox(
                   width: 5,
                 ),
-                (bottomindex == 2) ? Containerkecil() : ContainerkecilOff(),
+                (bottomindex == 2)
+                    ? const Containerkecil()
+                    : const ContainerkecilOff(),
               ],
             ),
           ),
@@ -114,13 +123,13 @@ class _SplashScreenState extends State<SplashScreen> {
                     voidcallback: () {
                       setState(() {
                         pagecontrol.nextPage(
-                            duration: Duration(milliseconds: 100),
+                            duration: const Duration(milliseconds: 100),
                             curve: Curves.linear);
                         if (bottomindex == 2) {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => LoginPage(),
+                                builder: (context) => const Wrapper(),
                               ));
                         }
                       });
@@ -135,6 +144,8 @@ class _SplashScreenState extends State<SplashScreen> {
 }
 
 class Containerkecil extends StatelessWidget {
+  const Containerkecil({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -142,16 +153,19 @@ class Containerkecil extends StatelessWidget {
           shape: BoxShape.circle,
           border: Border.all(color: birumuda, width: 5)),
       child: Container(
-        padding: EdgeInsets.all(6),
+        padding: const EdgeInsets.all(6),
         width: 6.5,
         height: 6.5,
-        decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.white),
+        decoration:
+            const BoxDecoration(shape: BoxShape.circle, color: Colors.white),
       ),
     );
   }
 }
 
 class ContainerkecilOff extends StatelessWidget {
+  const ContainerkecilOff({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -5,7 +5,7 @@ class HalamanTemplateData extends StatefulWidget {
 
   dynamic haldata;
 
-  HalamanTemplateData({this.haldata});
+  HalamanTemplateData({super.key, this.haldata});
 
   @override
   State<HalamanTemplateData> createState() => _HalamanTemplateDataState();

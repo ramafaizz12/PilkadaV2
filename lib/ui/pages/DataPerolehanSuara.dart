@@ -1,6 +1,8 @@
 part of 'pages.dart';
 
 class DataPerolehanSuara extends StatefulWidget {
+  const DataPerolehanSuara({super.key});
+
   @override
   State<DataPerolehanSuara> createState() => _DataPerolehanSuaraState();
 }
@@ -31,7 +33,8 @@ class _DataPerolehanSuaraState extends State<DataPerolehanSuara> {
   ///Validate NIK informations
 
   Future pickfoto() async {
-    final myfile = await ImagePicker().pickImage(source: ImageSource.gallery);
+    final myfile = await ImagePicker()
+        .pickImage(source: ImageSource.gallery, imageQuality: 1);
     setState(() {
       _filefoto = File(myfile!.path);
     });
@@ -57,7 +60,6 @@ class _DataPerolehanSuaraState extends State<DataPerolehanSuara> {
             .toString(),
         tps_id: tpsid.text,
         formulir_c1: _filefoto,
-        saksi_id: saksiid.text,
         data_kecurangan: datakecurangan.text));
   }
 
@@ -91,6 +93,7 @@ class _DataPerolehanSuaraState extends State<DataPerolehanSuara> {
 
   @override
   Widget build(BuildContext context) {
+    print(selectedprovinsi);
     return LayoutBuilder(
       builder: (p0, p1) => Stack(children: [
         BlocBuilder<DataperolehansuaraBloc, DataperolehansuaraState>(
@@ -111,7 +114,7 @@ class _DataPerolehanSuaraState extends State<DataPerolehanSuara> {
               }
             }
 
-            return SizedBox();
+            return const SizedBox();
           },
         ),
         SingleChildScrollView(
@@ -350,36 +353,6 @@ class _DataPerolehanSuaraState extends State<DataPerolehanSuara> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Saksi',
-                        style:
-                            textpoppin.copyWith(fontSize: p1.maxHeight * 0.02),
-                      ),
-                      Container(
-                        width: p1.maxWidth,
-                        height: p1.maxHeight * 0.05,
-                        decoration: BoxDecoration(
-                            color: putih,
-                            border: Border.all(width: 1.0, color: hitam),
-                            borderRadius: BorderRadius.circular(12)),
-                        child: TextField(
-                          keyboardType: TextInputType.number,
-                          controller: saksiid,
-                          maxLines: 1,
-                          style: textpoppin.copyWith(
-                              fontSize: p1.maxHeight * 0.02),
-                          decoration: const InputDecoration(
-                              hintText: 'Masukkan Saksi',
-                              border: InputBorder.none,
-                              isDense: true,
-                              contentPadding: EdgeInsets.only(top: 5, left: 5)),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
                         'Data Kecurangan',
                         style:
                             textpoppin.copyWith(fontSize: p1.maxHeight * 0.02),
@@ -464,7 +437,7 @@ class _DataPerolehanSuaraState extends State<DataPerolehanSuara> {
                       )),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
             ],
           ),
         ),

@@ -3,7 +3,11 @@ part of 'datadpt_bloc.dart';
 @immutable
 abstract class DatadptEvent {}
 
-class Datadptconnect extends DatadptEvent {}
+class Datadptconnect extends DatadptEvent {
+  String page;
+
+  Datadptconnect({this.page = ''});
+}
 
 class DatadptSearchProvinsi extends DatadptEvent {
   String? value;

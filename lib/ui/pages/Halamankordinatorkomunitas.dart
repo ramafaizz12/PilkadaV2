@@ -6,7 +6,7 @@ class HalamanKordinatorKomunitas extends StatefulWidget {
   String gruprelawan;
 
   HalamanKordinatorKomunitas(
-      {this.nama = 'Koordinator 1',
+      {super.key, this.nama = 'Koordinator 1',
       this.gruprelawan = 'Group 1',
       this.gambar = ''});
 
@@ -70,7 +70,7 @@ class _HalamanKordinatorKomunitasState
                                       mainAxisSpacing: p1.maxHeight * 0.02,
                                       crossAxisSpacing: 5),
                               itemBuilder: (context, index) => Animate(
-                                effects: [
+                                effects: const [
                                   FadeEffect(duration: Duration(seconds: 2)),
                                   ScaleEffect(duration: Duration(seconds: 1))
                                 ],
@@ -101,7 +101,7 @@ class _HalamanKordinatorKomunitasState
                                           Container(
                                               width: p2.maxWidth * 0.1,
                                               height: p2.maxHeight * 0.1,
-                                              decoration: BoxDecoration(
+                                              decoration: const BoxDecoration(
                                                   shape: BoxShape.circle,
                                                   color: pinkabu)),
                                           Text(
@@ -115,7 +115,7 @@ class _HalamanKordinatorKomunitasState
                                           Container(
                                               width: p2.maxWidth * 0.1,
                                               height: p2.maxHeight * 0.1,
-                                              decoration: BoxDecoration(
+                                              decoration: const BoxDecoration(
                                                   shape: BoxShape.circle,
                                                   color: pinkabu)),
                                           Text("${state.data![index].email}",
@@ -136,7 +136,7 @@ class _HalamanKordinatorKomunitasState
                               style: textpoppin.copyWith(
                                   fontSize: p1.maxWidth * 0.04),
                             ))
-                      : SpinKitDualRing(
+                      : const SpinKitDualRing(
                           color: birumuda,
                         );
                 },
@@ -147,7 +147,7 @@ class _HalamanKordinatorKomunitasState
               width: p1.maxWidth * 0.7,
               height: p1.maxHeight * 0.06,
               decoration: BoxDecoration(boxShadow: [
-                BoxShadow(color: hitam.withOpacity(0.2), offset: Offset(3, 3))
+                BoxShadow(color: hitam.withOpacity(0.2), offset: const Offset(3, 3))
               ], color: birumuda, borderRadius: BorderRadius.circular(15)),
               child: Row(
                 children: [
@@ -157,7 +157,7 @@ class _HalamanKordinatorKomunitasState
                       onPressed: () {
                         context
                             .read<DatakoordinatorBloc>()
-                            .add(DataKoordinatorConnect(page: '1'));
+                            .add(DataKoordinatorConnectKomunitas(page: '1'));
                       },
                       child:
                           Text("1", style: textpoppin.copyWith(color: putih)),
@@ -169,7 +169,7 @@ class _HalamanKordinatorKomunitasState
                       onPressed: () {
                         context
                             .read<DatakoordinatorBloc>()
-                            .add(DataKoordinatorConnect(page: '2'));
+                            .add(DataKoordinatorConnectKomunitas(page: '2'));
                       },
                       child:
                           Text("2", style: textpoppin.copyWith(color: putih)),
@@ -181,7 +181,7 @@ class _HalamanKordinatorKomunitasState
                       onPressed: () {
                         context
                             .read<DatakoordinatorBloc>()
-                            .add(DataKoordinatorConnect(page: '3'));
+                            .add(DataKoordinatorConnectKomunitas(page: '3'));
                       },
                       child:
                           Text("3", style: textpoppin.copyWith(color: putih)),
@@ -193,7 +193,7 @@ class _HalamanKordinatorKomunitasState
                       onPressed: () {
                         context
                             .read<DatakoordinatorBloc>()
-                            .add(DataKoordinatorConnect(page: '4'));
+                            .add(DataKoordinatorConnectKomunitas(page: '4'));
                       },
                       child:
                           Text("4", style: textpoppin.copyWith(color: putih)),
@@ -203,9 +203,9 @@ class _HalamanKordinatorKomunitasState
                     flex: 1,
                     child: TextButton(
                       onPressed: () {
-                        context
-                            .read<DatakoordinatorBloc>()
-                            .add(DataKoordinatorConnect(page: page.toString()));
+                        context.read<DatakoordinatorBloc>().add(
+                            DataKoordinatorConnectKomunitas(
+                                page: page.toString()));
                       },
                       child:
                           Text(">", style: textpoppin.copyWith(color: putih)),

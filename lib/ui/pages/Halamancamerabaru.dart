@@ -3,7 +3,7 @@ part of 'pages.dart';
 class Camerabaru extends StatelessWidget {
   XFile? pictureFile;
 
-  Camerabaru({this.pictureFile});
+  Camerabaru({super.key, this.pictureFile});
   @override
   Widget build(BuildContext context) {
     return Scaffold(

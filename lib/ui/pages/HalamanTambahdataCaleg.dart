@@ -1,6 +1,8 @@
 part of 'pages.dart';
 
 class HalamanTambahDatacaleg extends StatefulWidget {
+  const HalamanTambahDatacaleg({super.key});
+
   @override
   State<HalamanTambahDatacaleg> createState() => _HalamanTambahDatacalegState();
 }
@@ -80,7 +82,7 @@ class _HalamanTambahDatacalegState extends State<HalamanTambahDatacaleg> {
               }
             }
 
-            return SizedBox();
+            return const SizedBox();
           },
         ),
         SingleChildScrollView(
@@ -96,7 +98,7 @@ class _HalamanTambahDatacalegState extends State<HalamanTambahDatacaleg> {
                       width: p1.maxWidth * 0.25,
                       height: p1.maxHeight * 0.25,
                       decoration:
-                          BoxDecoration(shape: BoxShape.circle, color: putih),
+                          const BoxDecoration(shape: BoxShape.circle, color: putih),
                       child: LayoutBuilder(
                         builder: (p0, p2) => (_file != null)
                             ? Image.file(_file!)

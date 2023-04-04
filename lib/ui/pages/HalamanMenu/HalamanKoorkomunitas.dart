@@ -14,6 +14,8 @@ class HalamanDataKorKomunitas extends StatelessWidget {
     'CALEG',
   ];
 
+  HalamanDataKorKomunitas({super.key});
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -45,12 +47,12 @@ class HalamanDataKorKomunitas extends StatelessWidget {
                                     : (index == 2)
                                         ? HalamanTemplateawal(
                                             nama: 'Data Jumlah DPT',
-                                            halamandata: HalamanJumlahdpt())
+                                            halamandata: const HalamanJumlahdpt())
                                         : (index == 3)
                                             ? HalamanTemplateawal(
                                                 nama: 'Data Caleg',
-                                                halamandata: HalamanCaleg())
-                                            : Text("")));
+                                                halamandata: const HalamanCaleg())
+                                            : const Text("")));
                   },
                   gambar: gambar[index],
                   nama: nama[index],

@@ -9,6 +9,8 @@ class HalamanDataa extends StatelessWidget {
     'assets/icon5.svg',
   ];
   List nama = ['TPS', 'RELAWAN', 'KOORDINATOR', 'PENERIMA AKSESORIS', 'CALEG'];
+
+  HalamanDataa({super.key});
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -39,7 +41,7 @@ class HalamanDataa extends StatelessWidget {
                                               : (index == 3)
                                                   ? HalamanAksesoris()
                                                   : (index == 4)
-                                                      ? HalamanCaleg()
+                                                      ? const HalamanCaleg()
                                                       : const Text(""),
                                 )));
                   },

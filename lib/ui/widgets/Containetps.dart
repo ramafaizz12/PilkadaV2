@@ -6,7 +6,7 @@ class ContainerTps extends StatelessWidget {
   final double height;
   final String angka;
   const ContainerTps(
-      {required this.width,
+      {super.key, required this.width,
       required this.height,
       required this.nama,
       required this.angka});

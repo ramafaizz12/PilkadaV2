@@ -8,7 +8,7 @@ class ContainerData extends StatelessWidget {
   Color? color = putih;
 
   ContainerData(
-      {required this.fungsi,
+      {super.key, required this.fungsi,
       required this.nama,
       this.color,
       required this.height,

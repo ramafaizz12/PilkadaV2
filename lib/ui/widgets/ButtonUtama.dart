@@ -7,7 +7,7 @@ class ButtonUtama extends StatelessWidget {
 
   final VoidCallback? voidcallback;
 
-  ButtonUtama({this.width, this.height, this.namabutton, this.voidcallback});
+  const ButtonUtama({super.key, this.width, this.height, this.namabutton, this.voidcallback});
   @override
   Widget build(BuildContext context) {
     return Container(

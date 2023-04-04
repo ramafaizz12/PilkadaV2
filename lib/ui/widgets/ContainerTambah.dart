@@ -5,7 +5,7 @@ class ContainerTambah extends StatelessWidget {
   double? height;
   VoidCallback? fungsi;
 
-  ContainerTambah({this.height, this.width, this.fungsi});
+  ContainerTambah({super.key, this.height, this.width, this.fungsi});
   @override
   Widget build(BuildContext context) {
     return InkWell(

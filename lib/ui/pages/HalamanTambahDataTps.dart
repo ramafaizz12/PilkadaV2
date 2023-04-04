@@ -1,6 +1,8 @@
 part of 'pages.dart';
 
 class HalamanTambahDataTps extends StatefulWidget {
+  const HalamanTambahDataTps({super.key});
+
   @override
   _HalamanTambahDataTpsState createState() => _HalamanTambahDataTpsState();
 }
@@ -78,7 +80,7 @@ class _HalamanTambahDataTpsState extends State<HalamanTambahDataTps> {
               }
             }
 
-            return SizedBox();
+            return const SizedBox();
           },
         ),
         SingleChildScrollView(
